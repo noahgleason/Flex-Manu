@@ -48,3 +48,17 @@ header.wrap {
   .fx-nav-links a { padding: 11px 0; border-bottom: 1px solid var(--color-divider); }
   .fx-nav-links a:last-child { border-bottom: 0; }
 }
+.print-letterhead { display: none; }
+@media print {
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #111111;
+    --color-surface: #f4f4f4;
+    --color-divider: rgba(17,17,17,0.25);
+  }
+  header.wrap, footer, .fx-nav-toggle, .btn, .corner { display: none !important; }
+  body { background: #fff !important; }
+  main { padding-top: 0 !important; }
+  .print-letterhead { display: block !important; }
+  .fx-plate { break-inside: avoid; }
+}

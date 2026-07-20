@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flex-manufacturing.example/sitemap.xml
