@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Quote | Flex Manufacturing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <a class="site-title" href="index.html">Flex Manufacturing</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="capabilities.html">Capabilities</a></li>
+        <li><a href="reverse-engineering.html">Reverse Engineering</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="quote.html">Request a Quote</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <p class="placeholder-note">Placeholder page — real design and copy coming soon. Form action below needs a real third-party endpoint (e.g. Formspree) before launch.</p>
+    <h1>Request a Quote</h1>
+
+    <form action="https://formspree.io/f/REPLACE_ME" method="POST" enctype="multipart/form-data">
+      <label>
+        Name
+        <input type="text" name="name" required>
+      </label>
+      <label>
+        Company
+        <input type="text" name="company">
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        Phone
+        <input type="tel" name="phone">
+      </label>
+      <label>
+        Quantity
+        <input type="number" name="quantity" min="1">
+      </label>
+      <label>
+        Description
+        <textarea name="description" rows="5"></textarea>
+      </label>
+      <label>
+        Prints / Photos
+        <input type="file" name="attachment" accept="image/*,.pdf,.dwg,.dxf" multiple>
+      </label>
+      <button type="submit">Submit Request</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 1974&ndash;2026 Flex Manufacturing, Clinton Township, MI</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
