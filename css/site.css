@@ -1,7 +1,14 @@
 /* Flex Manufacturing — layout helpers on top of the Industry token sheet (styles.css) */
 body { margin: 0; }
 .wrap { max-width: 1200px; margin: 0 auto; padding-left: clamp(20px,5vw,56px); padding-right: clamp(20px,5vw,56px); }
-.fx-nav { display:flex; align-items:center; gap:16px 24px; flex-wrap:wrap; padding: 20px 0; position:sticky; top:0; z-index:20; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom:1px solid var(--color-divider); }
+header.wrap {
+  width: 100%; max-width: none; padding-left: 0; padding-right: 0;
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-divider);
+}
+.fx-nav { display:flex; align-items:center; gap:16px 24px; flex-wrap:wrap; max-width:1200px; margin:0 auto; padding: 20px clamp(20px,5vw,56px); }
 .fx-nav .fx-brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--color-text); margin-right:auto; font-family:var(--font-heading); font-weight:600; font-size:21px; }
 .fx-nav .fx-brand svg { color: var(--color-accent); width:34px; height:34px; }
 .fx-nav-links { display:flex; gap:22px; align-items:center; }
