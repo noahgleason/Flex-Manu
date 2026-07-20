@@ -1,66 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Request a Quote | Flex Manufacturing</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a Quote | Flex Manufacturing, Inc. — Metro Detroit Gear Manufacturer</title>
+<meta name="description" content="Request a quote for custom gears, splines, grinding, turning, milling or gear reverse engineering. Attach a print, CAD file, or photo of the part. Family-owned in metro Detroit since 1974.">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-  <header>
-    <a class="site-title" href="index.html">Flex Manufacturing</a>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="capabilities.html">Capabilities</a></li>
-        <li><a href="reverse-engineering.html">Reverse Engineering</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="quote.html">Request a Quote</a></li>
-      </ul>
-    </nav>
-  </header>
+<div style="min-height:100vh;display:flex;flex-direction:column;background:var(--color-bg)">
+<header class="wrap"><nav class="fx-nav" aria-label="Primary">
+    <a class="fx-brand" href="index.html"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg><span>FLEX<span style="color:var(--color-accent-700);font-weight:400"> MANUFACTURING</span></span></a>
+    <button type="button" class="fx-nav-toggle" aria-expanded="false" aria-controls="fx-nav-links" aria-label="Toggle navigation menu"><svg class="fx-nav-toggle-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg><svg class="fx-nav-toggle-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button><div class="fx-nav-links" id="fx-nav-links">
+      <a href="index.html">Home</a>
+      <a href="capabilities.html">Capabilities</a>
+      <a href="reverse-engineering.html">Reverse Engineering</a>
+      <a href="about.html">About</a>
+    </div>
+    <a href="tel:+15864691076" class="btn btn-secondary" style="text-decoration:none;gap:7px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"></path></svg>(586) 469-1076</a>
+    <a href="quote.html" class="btn btn-primary" style="text-decoration:none">Get a Quote</a>
+  </nav></header>
+<main style="flex:1">
 
-  <main>
-    <p class="placeholder-note">Placeholder page — real design and copy coming soon. Form action below needs a real third-party endpoint (e.g. Formspree) before launch.</p>
-    <h1>Request a Quote</h1>
-
-    <form action="https://formspree.io/f/REPLACE_ME" method="POST" enctype="multipart/form-data">
-      <label>
-        Name
-        <input type="text" name="name" required>
-      </label>
-      <label>
-        Company
-        <input type="text" name="company">
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        Phone
-        <input type="tel" name="phone">
-      </label>
-      <label>
-        Quantity
-        <input type="number" name="quantity" min="1">
-      </label>
-      <label>
-        Description
-        <textarea name="description" rows="5"></textarea>
-      </label>
-      <label>
-        Prints / Photos
-        <input type="file" name="attachment" accept="image/*,.pdf,.dwg,.dxf" multiple>
-      </label>
-      <button type="submit">Submit Request</button>
+<div class="wrap" style="max-width:1100px;padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(40px,5vw,72px)">
+  <span class="fx-kick">Request a Quote</span>
+  <h1 class="fx-display" style="max-width:18ch">Send your print &mdash; get a quote back fast</h1>
+  <p style="font-size:17px;line-height:1.55;max-width:58ch;margin:22px 0 0;color:color-mix(in srgb,var(--color-text) 84%,transparent)">Tell us what you need and attach a file. No CAD file? A photo or hand sketch of the part works too. Prefer to talk? Call <a href="tel:+15864691076" style="color:var(--color-accent-700);font-weight:500">(586) 469-1076</a>.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,48px);margin-top:36px;align-items:start">
+    <form name="quote" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="blueprint" style="padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:18px">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <input type="hidden" name="form-name" value="quote">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
+        <div class="field"><label for="fx-name">Name</label><input class="input" id="fx-name" name="name" type="text" required autocomplete="name"></div>
+        <div class="field"><label for="fx-company">Company</label><input class="input" id="fx-company" name="company" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="fx-email">Email</label><input class="input" id="fx-email" name="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="fx-phone">Phone</label><input class="input" id="fx-phone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="fx-qty">Quantity</label><input class="input" id="fx-qty" name="quantity" type="text" placeholder="e.g. 1, 12, 500, production run"></div>
+      <div class="field"><label for="fx-desc">Part description &mdash; what do you need?</label><textarea class="input" id="fx-desc" name="description" required placeholder="Gear type, dimensions, material, application, timeline&hellip;" style="min-height:120px"></textarea></div>
+      <div class="field">
+        <label for="fx-file">Attach your print or a photo</label>
+        <input class="input" id="fx-file" name="attachment" type="file" accept=".pdf,.step,.stp,.dwg,.dxf,.iges,.igs,.jpg,.jpeg,.png" style="padding:8px 10px;cursor:pointer">
+        <p style="font-size:12px;margin:7px 0 0;color:color-mix(in srgb,var(--color-text) 62%,transparent)">Accepts PDF, STEP, DWG, DXF, IGES, JPG/PNG. A photo of the part works too.</p>
+      </div>
+      <input type="text" name="bot-field" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:4px">
+        <button type="submit" class="btn btn-primary" style="font-size:15px;padding:13px 26px">Send Request <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+        <span style="font-size:13px;color:color-mix(in srgb,var(--color-text) 62%,transparent)">We reply with a quote &mdash; usually same or next business day.</span>
+      </div>
     </form>
-  </main>
-
-  <footer>
-    <p>&copy; 1974&ndash;2026 Flex Manufacturing, Clinton Township, MI</p>
-  </footer>
-
-  <script src="js/main.js"></script>
+    <aside style="display:flex;flex-direction:column;gap:20px">
+      <div class="blueprint" style="padding:24px"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <h2 style="font-family:var(--font-heading);font-size:19px;text-transform:uppercase;margin:0 0 14px">Rather call?</h2>
+        <a href="tel:+15864691076" style="font-family:var(--font-heading);font-size:26px;color:var(--color-accent-700);text-decoration:none;letter-spacing:.01em">(586) 469-1076</a>
+        <p style="font-size:14px;line-height:1.55;margin:14px 0 0;color:color-mix(in srgb,var(--color-text) 78%,transparent)">Flex Manufacturing, Inc.<br>44805 Trinity Dr<br>Clinton Township, MI 48038</p>
+      </div>
+      <div class="blueprint" style="padding:24px;background:color-mix(in srgb,var(--color-accent) 8%,transparent)"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <p style="font-size:14px;line-height:1.6;margin:0;color:color-mix(in srgb,var(--color-text) 82%,transparent)"><strong style="font-family:var(--font-heading);text-transform:uppercase;letter-spacing:.04em">No drawing?</strong><br>A photo or hand sketch is fine. We reverse engineer from the part itself &mdash; obsolete and OEM-orphaned gears welcome.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+</main>
+<footer style="background:var(--color-neutral-900);color:var(--color-bg);margin-top:auto">
+  <div class="wrap" style="padding-top:clamp(40px,4vw,56px);padding-bottom:clamp(40px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <span style="color:var(--color-accent-300)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg></span>
+        <span style="font-family:var(--font-heading);font-size:18px">FLEX MANUFACTURING, INC.</span>
+      </div>
+      <p style="font-size:14px;line-height:1.6;margin:0;color:color-mix(in srgb,var(--color-bg) 72%,transparent)">Custom gears, splines &amp; precision machining. Family-owned since 1974, serving metro Detroit and beyond.</p>
+    </div>
+    <div>
+      <h4 style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-300);margin:0 0 12px">Contact</h4>
+      <p style="font-size:14px;line-height:1.7;margin:0;color:color-mix(in srgb,var(--color-bg) 80%,transparent)">44805 Trinity Dr<br>Clinton Township, MI 48038<br><a href="tel:+15864691076" style="color:var(--color-bg);font-weight:500">(586) 469-1076</a></p>
+    </div>
+    <div>
+      <h4 style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-300);margin:0 0 12px">Site</h4>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+        <a href="index.html" style="color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-decoration:none">Home</a>
+        <a href="capabilities.html" style="color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-decoration:none">Capabilities</a>
+        <a href="reverse-engineering.html" style="color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-decoration:none">Reverse Engineering</a>
+        <a href="about.html" style="color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-decoration:none">About</a>
+        <a href="quote.html" style="color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-decoration:none">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+  <div style="border-top:1px solid color-mix(in srgb,var(--color-bg) 16%,transparent)">
+    <div class="wrap" style="padding-top:18px;padding-bottom:18px;font-size:12px;color:color-mix(in srgb,var(--color-bg) 60%,transparent)">&copy; 1974&ndash;2026 Flex Manufacturing, Inc. &nbsp;&middot;&nbsp; Custom gear manufacturer &mdash; large diameter gears, spline grinding &amp; gear reverse engineering &mdash; Clinton Township, Michigan.</div>
+  </div>
+</footer>
+</div>
+<script src="js/nav.js"></script>
 </body>
 </html>

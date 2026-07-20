@@ -1,0 +1,41 @@
+/* Flex Manufacturing — layout helpers on top of the Industry token sheet (styles.css) */
+body { margin: 0; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: clamp(20px,5vw,56px); padding-right: clamp(20px,5vw,56px); }
+.fx-nav { display:flex; align-items:center; gap:16px 24px; flex-wrap:wrap; padding: var(--space-3) 0; position:sticky; top:0; z-index:20; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom:1px solid var(--color-divider); }
+.fx-nav .fx-brand { display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--color-text); margin-right:auto; font-family:var(--font-heading); font-weight:600; font-size:18px; }
+.fx-nav .fx-brand svg { color: var(--color-accent); }
+.fx-nav-links { display:flex; gap:20px; align-items:center; }
+.fx-nav-links a { color:inherit; text-decoration:none; font-size:14px; }
+.fx-nav-links a:hover, .fx-nav-links a[aria-current='page'] { color: var(--color-accent-700); }
+.fx-nav-toggle { display:none; align-items:center; justify-content:center; width:38px; height:38px; padding:0; background:none; border:1px solid var(--color-divider); border-radius:var(--radius-md); color:var(--color-text); cursor:pointer; }
+.fx-nav-toggle-close { display:none; }
+.fx-nav-toggle[aria-expanded='true'] .fx-nav-toggle-open { display:none; }
+.fx-nav-toggle[aria-expanded='true'] .fx-nav-toggle-close { display:block; }
+.fx-kick { display:block; font-family: var(--font-heading); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-700); margin: 0 0 10px; }
+.fx-rule { height:1px; border:0; background: var(--color-divider); margin: 0 0 22px; }
+.fx-display { font-family: var(--font-heading); font-weight:600; text-transform: uppercase; line-height: 1.02; letter-spacing:.01em; margin:0; font-size: clamp(40px, 6vw, 80px); }
+.fx-plate { position: relative; border: 1px solid var(--color-divider); }
+.fx-tb { display:flex; flex-wrap:wrap; align-items:stretch; border-bottom:1px solid var(--color-divider); }
+.fx-tb > span { padding: 11px 18px; font-family: var(--font-heading); font-size:13px; line-height:1.5; letter-spacing:.08em; text-transform:uppercase; font-weight:600; }
+.fx-tb .fx-tb-title { flex:1; min-width: 14ch; }
+.fx-tb .fx-tb-cell { border-left:1px solid var(--color-divider); color: color-mix(in srgb, var(--color-text) 70%, transparent); white-space:nowrap; }
+.fx-speclist { display:grid; grid-template-columns: 1fr; margin:0; }
+.fx-specrow { display:grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: 16px 28px; padding: 16px 18px; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); }
+.fx-specrow:last-child { border-bottom: 0; }
+.fx-specrow dt { font-family: var(--font-heading); font-size: 13px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color: var(--color-accent-700); margin:0; }
+.fx-specrow dd { margin:0; font-size:15px; line-height:1.55; }
+.fx-imgph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; background: var(--color-surface); font-family:var(--font-heading); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+@media (max-width: 620px){
+  .fx-specrow { grid-template-columns: 1fr; gap:6px; }
+  .fx-nav-toggle { display:inline-flex; }
+  .fx-nav-links {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--color-bg); border-bottom: 1px solid var(--color-divider);
+    padding: 6px clamp(20px,5vw,56px) 14px;
+  }
+  .fx-nav-links.is-open { display: flex; }
+  .fx-nav-links a { padding: 11px 0; border-bottom: 1px solid var(--color-divider); }
+  .fx-nav-links a:last-child { border-bottom: 0; }
+}
