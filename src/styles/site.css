@@ -36,7 +36,7 @@ header.wrap {
 .fx-imgph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; background: var(--color-surface); font-family:var(--font-heading); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color: color-mix(in srgb, var(--color-text) 55%, transparent); }
 
 .fx-carousel-track {
-  display: flex; gap: clamp(16px,2.5vw,28px); overflow-x: auto;
+  position: relative; display: flex; gap: clamp(16px,2.5vw,28px); overflow-x: auto;
   scroll-snap-type: x mandatory; scroll-padding-left: 0;
   padding-bottom: 4px; margin: 0 -1px; scrollbar-width: none;
 }
