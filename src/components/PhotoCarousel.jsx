@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useCallback } from "react";
 
 export default function PhotoCarousel({ photos }) {
   const trackRef = useRef(null);
+  const targetRef = useRef(0);
   const [active, setActive] = useState(0);
 
   const scrollToIndex = useCallback((index) => {
@@ -13,23 +14,37 @@ export default function PhotoCarousel({ photos }) {
     track.scrollTo({ left: slide.offsetLeft, behavior: reduceMotion ? "auto" : "smooth" });
   }, []);
 
+  const goToIndex = (index) => {
+    targetRef.current = index;
+    setActive(index);
+    scrollToIndex(index);
+  };
+
+  // Reads targetRef (not the `active` state) so rapid clicks each advance
+  // from the last requested slide instead of collapsing into one step when
+  // several clicks land before a re-render commits the new `active`.
   const go = (delta) => {
-    const next = Math.max(0, Math.min(photos.length - 1, active + delta));
-    setActive(next);
-    scrollToIndex(next);
+    const next = Math.max(0, Math.min(photos.length - 1, targetRef.current + delta));
+    goToIndex(next);
   };
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-    let raf = null;
+    // Debounced until scrolling actually settles — during an in-flight
+    // smooth scroll this fires on every frame with a transient position;
+    // updating targetRef from those would let a rapid second click read a
+    // stale, not-yet-arrived target and undercount again.
+    let settleTimer = null;
     const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = null;
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
+        settleTimer = null;
         const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
         if (atEnd) {
-          setActive(track.children.length - 1);
+          const last = track.children.length - 1;
+          targetRef.current = last;
+          setActive(last);
           return;
         }
         const children = Array.from(track.children);
@@ -39,13 +54,14 @@ export default function PhotoCarousel({ photos }) {
           const dist = Math.abs(child.offsetLeft - track.scrollLeft);
           if (dist < closestDist) { closestDist = dist; closest = i; }
         });
+        targetRef.current = closest;
         setActive(closest);
-      });
+      }, 100);
     };
     track.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       track.removeEventListener("scroll", onScroll);
-      if (raf) cancelAnimationFrame(raf);
+      if (settleTimer) clearTimeout(settleTimer);
     };
   }, [photos]);
 
@@ -83,7 +99,7 @@ export default function PhotoCarousel({ photos }) {
                 aria-selected={i === active}
                 aria-label={`Go to photo ${i + 1}`}
                 className={`fx-carousel-dot${i === active ? " is-active" : ""}`}
-                onClick={() => { setActive(i); scrollToIndex(i); }}
+                onClick={() => goToIndex(i)}
               />
             ))}
           </div>
