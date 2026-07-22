@@ -67,7 +67,7 @@ export default function Capabilities() {
           </div>
           <div style={{ textAlign: "right", fontSize: 13, lineHeight: 1.5 }}>
             44805 Trinity Dr, Clinton Township, MI 48038<br />
-            (586) 469-1076
+            (586) 791-8060
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ export default function Capabilities() {
         </div>
         <div style={{ marginTop: 36, display: "flex", gap: 14, flexWrap: "wrap" }}>
           <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
-          <a href="tel:+15864691076" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 469-1076</a>
+          <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
           <a href="/assets/flex-manufacturing-capabilities.pdf" download className="btn btn-ghost" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v13m0 0-4-4m4 4 4-4M4 20h16"></path></svg>
             Download Capability Sheet (PDF)

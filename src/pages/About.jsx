@@ -36,7 +36,7 @@ export default function About() {
         </div>
         <div style={{ marginTop: 36, display: "flex", gap: 14, flexWrap: "wrap" }}>
           <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
-          <a href="tel:+15864691076" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 469-1076</a>
+          <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
         </div>
       </div>
     </>

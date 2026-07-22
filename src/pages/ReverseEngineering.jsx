@@ -43,7 +43,7 @@ export default function ReverseEngineering() {
           <h2 style={{ fontSize: "clamp(26px,3vw,38px)", textTransform: "uppercase", margin: 0, maxWidth: "20ch" }}>Line down? Start the quote now.</h2>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 22 }}>
             <Link to="/quote" className="btn" style={{ textDecoration: "none", background: "var(--color-text)", color: "var(--color-bg)", borderColor: "var(--color-text)", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
-            <a href="tel:+15864691076" className="btn" style={{ textDecoration: "none", background: "transparent", color: "var(--color-text)", borderColor: "color-mix(in srgb,var(--color-text) 55%,transparent)", fontSize: 15, padding: "12px 22px" }}>Call (586) 469-1076</a>
+            <a href="tel:+15867918060" className="btn" style={{ textDecoration: "none", background: "transparent", color: "var(--color-text)", borderColor: "color-mix(in srgb,var(--color-text) 55%,transparent)", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
           </div>
         </div>
       </div>

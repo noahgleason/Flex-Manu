@@ -30,7 +30,7 @@ export default function Footer() {
           <h4 style={{ fontSize: 13, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--color-accent-300)", margin: "0 0 12px" }}>Contact</h4>
           <p style={{ fontSize: 14, lineHeight: 1.7, margin: 0, color: "color-mix(in srgb,var(--color-text) 80%,transparent)" }}>
             44805 Trinity Dr<br />Clinton Township, MI 48038<br />
-            <a href="tel:+15864691076" style={{ color: "var(--color-text)", fontWeight: 500 }}>(586) 469-1076</a>
+            <a href="tel:+15867918060" style={{ color: "var(--color-text)", fontWeight: 500 }}>(586) 791-8060</a>
           </p>
         </div>
         <div>

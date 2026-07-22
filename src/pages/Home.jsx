@@ -33,7 +33,7 @@ export default function Home() {
             Request a Quote{" "}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
           </Link>
-          <a href="tel:+15864691076" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 469-1076</a>
+          <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "12px 36px", marginTop: 44, paddingTop: 26, borderTop: "1px solid var(--color-divider)", fontFamily: "var(--font-heading)", fontSize: 15, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 72%,transparent)" }}>
           <span>Family-owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Est. 1974</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Metro Detroit</span>
@@ -125,7 +125,7 @@ export default function Home() {
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 26 }}>
             <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
-            <a href="tel:+15864691076" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 469-1076</a>
+            <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
           </div>
         </div>
       </section>

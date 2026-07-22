@@ -11,7 +11,7 @@ export default function NotFound() {
         <h1 className="fx-display" style={{ maxWidth: "16ch" }}>Page not found</h1>
         <p style={{ fontSize: 18, lineHeight: 1.6, maxWidth: "56ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
           The page you&rsquo;re looking for doesn&rsquo;t exist or may have moved. Try one of the links below, or call us directly at{" "}
-          <a href="tel:+15864691076" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 469-1076</a>.
+          <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 791-8060</a>.
         </p>
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 }}>
           <Link to="/" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Back to Home</Link>
