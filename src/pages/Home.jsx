@@ -55,7 +55,10 @@ export default function Home() {
               {img && (
                 <figure className="blueprint duotone" style={{ margin: "0 0 16px", aspectRatio: "4/3" }}>
                   <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-                  <img src={`/assets/photos/${img}`} alt={`${title} example`} style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+                  <picture>
+                    <source srcSet={`/assets/photos/${img.replace(/\.jpg$/, ".webp")}`} type="image/webp" />
+                    <img src={`/assets/photos/${img}`} alt={`${title} example`} style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+                  </picture>
                 </figure>
               )}
               <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 22, textTransform: "uppercase", margin: "0 0 10px" }}>{title}</h2>
@@ -79,7 +82,10 @@ export default function Home() {
       <section className="wrap" style={{ paddingBottom: "clamp(40px,5vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "clamp(28px,4vw,64px)", alignItems: "center" }}>
         <figure className="blueprint duotone" style={{ margin: 0, aspectRatio: "4/3" }}>
           <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-          <img src="/assets/photos/custom-flanged-cylinder-part.jpg" alt="Large custom flanged cylinder part, machined and staged on the shop floor" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+          <picture>
+            <source srcSet="/assets/photos/custom-flanged-cylinder-part.webp" type="image/webp" />
+            <img src="/assets/photos/custom-flanged-cylinder-part.jpg" alt="Large custom flanged cylinder part, machined and staged on the shop floor" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+          </picture>
         </figure>
         <div>
           <span className="fx-kick">By the numbers</span>

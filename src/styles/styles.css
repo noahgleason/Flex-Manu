@@ -1,5 +1,6 @@
-/* Industry — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+/* Industry — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md.
+   Font loading (Chakra Petch, IBM Plex Sans) is a <link rel="stylesheet"> in index.html's <head>, not a CSS @import here —
+   @import inside a stylesheet blocks discovery until this file itself loads, creating a serial request waterfall. */
 
 :root {
   --color-bg: #14171a;
@@ -120,6 +121,7 @@ h6 { letter-spacing: 0.08em; text-transform: uppercase; }
 p { margin: 0 0 var(--space-3); }
 a { color: var(--color-accent); text-underline-offset: 3px; }
 img { display: block; max-width: 100%; }
+picture { display: contents; }
 figure { margin: 0; }
 figcaption {
   font-size: 11px; margin-top: var(--space-1);

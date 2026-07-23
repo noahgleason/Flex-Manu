@@ -114,7 +114,10 @@ export default function PhotoCarousel({ photos }) {
             ref={(el) => { slidesRef.current[i] = el; }}
           >
             <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-            <img src={src} alt={alt} loading="lazy" />
+            <picture>
+              <source srcSet={src.replace(/\.jpg$/, ".webp")} type="image/webp" />
+              <img src={src} alt={alt} loading="lazy" />
+            </picture>
           </figure>
         ))}
       </div>
