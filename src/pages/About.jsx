@@ -38,6 +38,10 @@ export default function About() {
           <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
           <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
         </div>
+
+        <p style={{ fontSize: 13, lineHeight: 1.6, maxWidth: "70ch", margin: "44px 0 0", paddingTop: 24, borderTop: "1px solid var(--color-divider)", color: "color-mix(in srgb,var(--color-text) 65%,transparent)" }}>
+          Flex Manufacturing, Inc. is an Equal Opportunity Employer. We do not discriminate on the basis of race, color, religion, sex, national origin, age, disability, veteran status, or any other status protected by applicable federal, state, or local law, in employment or in the provision of services.
+        </p>
       </div>
     </>
   );

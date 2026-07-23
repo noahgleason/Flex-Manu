@@ -75,7 +75,10 @@ export default function Quote() {
             <div className="blueprint" style={{ padding: 24 }}>
               <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
               <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 19, textTransform: "uppercase", margin: "0 0 14px" }}>Rather call?</h2>
-              <a href="tel:+15867918060" style={{ fontFamily: "var(--font-heading)", fontSize: 26, color: "var(--color-accent-700)", textDecoration: "none", letterSpacing: ".01em" }}>(586) 791-8060</a>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <a href="tel:+15867918060" style={{ fontFamily: "var(--font-heading)", fontSize: 21, color: "var(--color-accent-700)", textDecoration: "none", letterSpacing: ".01em" }}>Dave: (586) 791-8060</a>
+                <a href="tel:+16166907648" style={{ fontFamily: "var(--font-heading)", fontSize: 21, color: "var(--color-accent-700)", textDecoration: "none", letterSpacing: ".01em" }}>Noah: (616) 690-7648</a>
+              </div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: "14px 0 0", color: "color-mix(in srgb,var(--color-text) 78%,transparent)" }}>
                 Flex Manufacturing, Inc.<br />44805 Trinity Dr<br />Clinton Township, MI 48038
               </p>
