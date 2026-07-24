@@ -51,6 +51,19 @@
   <input type="file" name="attachment">
   <input type="text" name="bot-field">
 </form>
+<!-- Static duplicate of the Partner RFQ form (src/pages/PartnerRFQ.jsx) for the
+     same build-time reason as above. Not linked from nav/sitemap — direct-link only. -->
+<form name="partner-rfq" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <input type="hidden" name="form-name" value="partner-rfq">
+  <input type="text" name="name">
+  <input type="text" name="company">
+  <input type="email" name="email">
+  <input type="tel" name="phone">
+  <input type="text" name="quantity">
+  <textarea name="description"></textarea>
+  <input type="file" name="attachment">
+  <input type="text" name="bot-field">
+</form>
 <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
