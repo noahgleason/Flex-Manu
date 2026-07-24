@@ -1,20 +1,23 @@
+import { useState } from "react";
 import Seo from "../components/Seo.jsx";
 
 export default function PartnerRFQ() {
+  const [submitting, setSubmitting] = useState(false);
+
   return (
     <>
       <Seo
-        title="Partner RFQ | Flex Manufacturing, Inc."
-        description="Request for quote form for existing Flex Manufacturing customers."
+        title="Request for Quote | Flex Manufacturing, Inc."
+        description="Submit a request for quote to Flex Manufacturing, Inc."
         path="/partner-rfq"
         noindex
       />
 
       <div className="wrap" style={{ maxWidth: 1100, paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(40px,5vw,72px)" }}>
-        <span className="fx-kick">Partner RFQ</span>
-        <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Request for Quote &mdash; Existing Customers</h1>
+        <span className="fx-kick">Request for Quote</span>
+        <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Submit a Request for Quote</h1>
         <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "58ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
-          For current Flex Manufacturing customers. Enter part details below and attach a print, CAD file, or photo. Response time is typically same or next business day. Phone:{" "}
+          Enter part details below and attach a print, CAD file, or photo. Response time is typically same or next business day. Phone:{" "}
           <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 791-8060</a>.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "clamp(28px,4vw,48px)", marginTop: 36, alignItems: "start" }}>
@@ -27,6 +30,13 @@ export default function PartnerRFQ() {
             encType="multipart/form-data"
             className="blueprint"
             style={{ padding: "clamp(24px,3vw,36px)", display: "flex", flexDirection: "column", gap: 18 }}
+            onSubmit={(e) => {
+              if (submitting) {
+                e.preventDefault();
+                return;
+              }
+              setSubmitting(true);
+            }}
           >
             <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
             <input type="hidden" name="form-name" value="partner-rfq" />
@@ -65,9 +75,13 @@ export default function PartnerRFQ() {
             </div>
             <input type="text" name="bot-field" tabIndex="-1" autoComplete="off" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true" />
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", marginTop: 4 }}>
-              <button type="submit" className="btn btn-primary" style={{ fontSize: 15, padding: "13px 26px" }}>
-                Send Request{" "}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              <button type="submit" className="btn btn-primary" disabled={submitting} style={{ fontSize: 15, padding: "13px 26px", opacity: submitting ? 0.6 : 1, cursor: submitting ? "default" : "pointer" }}>
+                {submitting ? "Sending…" : (
+                  <>
+                    Send Request{" "}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                  </>
+                )}
               </button>
               <span style={{ fontSize: 13, color: "color-mix(in srgb,var(--color-text) 62%,transparent)" }}>We reply with a quote &mdash; usually same or next business day.</span>
             </div>
@@ -88,7 +102,7 @@ export default function PartnerRFQ() {
               <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
               <p style={{ fontSize: 14, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 82%,transparent)" }}>
                 <strong style={{ fontFamily: "var(--font-heading)", textTransform: "uppercase", letterSpacing: ".04em" }}>Note:</strong><br />
-                This form is for existing accounts only. Include as much part detail as possible for the fastest turnaround.
+                Include as much part detail as possible for the fastest turnaround.
               </p>
             </div>
           </aside>

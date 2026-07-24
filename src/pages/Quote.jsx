@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Seo from "../components/Seo.jsx";
 
 export default function Quote() {
+  const [submitting, setSubmitting] = useState(false);
+
   return (
     <>
       <Seo
@@ -26,6 +29,13 @@ export default function Quote() {
             encType="multipart/form-data"
             className="blueprint"
             style={{ padding: "clamp(24px,3vw,36px)", display: "flex", flexDirection: "column", gap: 18 }}
+            onSubmit={(e) => {
+              if (submitting) {
+                e.preventDefault();
+                return;
+              }
+              setSubmitting(true);
+            }}
           >
             <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
             <input type="hidden" name="form-name" value="quote" />
@@ -64,9 +74,13 @@ export default function Quote() {
             </div>
             <input type="text" name="bot-field" tabIndex="-1" autoComplete="off" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true" />
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", marginTop: 4 }}>
-              <button type="submit" className="btn btn-primary" style={{ fontSize: 15, padding: "13px 26px" }}>
-                Send Request{" "}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              <button type="submit" className="btn btn-primary" disabled={submitting} style={{ fontSize: 15, padding: "13px 26px", opacity: submitting ? 0.6 : 1, cursor: submitting ? "default" : "pointer" }}>
+                {submitting ? "Sending…" : (
+                  <>
+                    Send Request{" "}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                  </>
+                )}
               </button>
               <span style={{ fontSize: 13, color: "color-mix(in srgb,var(--color-text) 62%,transparent)" }}>We reply with a quote &mdash; usually same or next business day.</span>
             </div>
