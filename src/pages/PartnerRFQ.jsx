@@ -5,16 +5,16 @@ export default function PartnerRFQ() {
     <>
       <Seo
         title="Partner RFQ | Flex Manufacturing, Inc."
-        description="Existing Flex Manufacturing customers: submit your next request for quote directly here."
+        description="Request for quote form for existing Flex Manufacturing customers."
         path="/partner-rfq"
         noindex
       />
 
       <div className="wrap" style={{ maxWidth: 1100, paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(40px,5vw,72px)" }}>
         <span className="fx-kick">Partner RFQ</span>
-        <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Already a customer? Send your next request here</h1>
+        <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Request for Quote &mdash; Existing Customers</h1>
         <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "58ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
-          Already working with Flex Manufacturing? Submit your next request directly here &mdash; no need to email. Attach a print, CAD file, or photo and we&rsquo;ll follow up same or next business day. Prefer to talk? Call{" "}
+          For current Flex Manufacturing customers. Enter part details below and attach a print, CAD file, or photo. Response time is typically same or next business day. Phone:{" "}
           <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 791-8060</a>.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "clamp(28px,4vw,48px)", marginTop: 36, alignItems: "start" }}>
@@ -87,8 +87,8 @@ export default function PartnerRFQ() {
             <div className="blueprint" style={{ padding: 24, background: "color-mix(in srgb,var(--color-accent) 8%,transparent)" }}>
               <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
               <p style={{ fontSize: 14, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 82%,transparent)" }}>
-                <strong style={{ fontFamily: "var(--font-heading)", textTransform: "uppercase", letterSpacing: ".04em" }}>Skip the intro &mdash;</strong><br />
-                we already have your shop&rsquo;s history. Just tell us what&rsquo;s next and attach a print.
+                <strong style={{ fontFamily: "var(--font-heading)", textTransform: "uppercase", letterSpacing: ".04em" }}>Note:</strong><br />
+                This form is for existing accounts only. Include as much part detail as possible for the fastest turnaround.
               </p>
             </div>
           </aside>
