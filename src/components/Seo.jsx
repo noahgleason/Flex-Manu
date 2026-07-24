@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const SITE_URL = "https://flex-manufacturing.example";
+const SITE_URL = "https://flexmanufacturing.net";
 const SITE_NAME = "Flex Manufacturing, Inc.";
 const OG_IMAGE = `${SITE_URL}/assets/og-image.png`;
 
