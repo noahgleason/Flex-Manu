@@ -40,7 +40,7 @@
 <!-- Static duplicate of the Quote form so Netlify's build-time crawler can
      register it — the real form is rendered client-side by React, which
      Netlify's HTML parser never sees. Field names must match src/pages/Quote.jsx. -->
-<form name="quote" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+<form name="quote" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
   <input type="hidden" name="form-name" value="quote">
   <input type="text" name="name">
   <input type="text" name="company">
@@ -53,7 +53,7 @@
 </form>
 <!-- Static duplicate of the Partner RFQ form (src/pages/PartnerRFQ.jsx) for the
      same build-time reason as above. Not linked from nav/sitemap — direct-link only. -->
-<form name="partner-rfq" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+<form name="partner-rfq" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
   <input type="hidden" name="form-name" value="partner-rfq">
   <input type="text" name="name">
   <input type="text" name="company">
