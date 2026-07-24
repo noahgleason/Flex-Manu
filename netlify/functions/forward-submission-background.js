@@ -13,11 +13,16 @@ exports.handler = async (event) => {
     : event.body;
 
   try {
-    await fetch(APPS_SCRIPT_URL, {
+    const res = await fetch(APPS_SCRIPT_URL, {
       method: "POST",
       headers: { "Content-Type": event.headers?.["content-type"] || "application/json" },
       body,
     });
+    const text = await res.text();
+    console.log(
+      `forward-submission-background: Apps Script responded ${res.status}`,
+      text.slice(0, 500)
+    );
   } catch (err) {
     console.error("forward-submission-background: failed to reach Apps Script", err);
   }
