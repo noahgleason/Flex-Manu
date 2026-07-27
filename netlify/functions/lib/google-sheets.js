@@ -14,6 +14,10 @@ const SHEETS_API = "https://sheets.googleapis.com/v4/spreadsheets";
 const SCOPE = "https://www.googleapis.com/auth/spreadsheets";
 const ID_COLUMN = "RFQ #";
 
+// Sheet layout: row 1 is a title, row 2 a description, row 3 blank, row 4
+// the real column headers, and data starts on row 5.
+const HEADER_ROW = 4;
+
 function base64url(buffer) {
   return buffer.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
@@ -77,13 +81,16 @@ function columnLetter(index) {
   return letter;
 }
 
-// Loads the first tab's title + internal sheetId, and every row (including
-// the header row) as raw arrays.
+// Loads the first tab's title + internal sheetId, the header row (row
+// HEADER_ROW), and every data row after it.
 async function loadSheet() {
   const meta = await sheetsRequest("?fields=sheets.properties");
   const { sheetId, title } = meta.sheets[0].properties;
   const data = await sheetsRequest(`/values/${encodeURIComponent(title)}`);
-  return { sheetId, title, rows: data.values || [] };
+  const rows = data.values || [];
+  const headers = rows[HEADER_ROW - 1] || [];
+  const dataRows = rows.slice(HEADER_ROW);
+  return { sheetId, title, headers, dataRows };
 }
 
 function findEmailHeader(headers) {
@@ -112,9 +119,8 @@ function buildMailto(headers, quote) {
 }
 
 async function fetchAllRows() {
-  const { rows } = await loadSheet();
-  if (rows.length === 0) return [];
-  const [headers, ...dataRows] = rows;
+  const { headers, dataRows } = await loadSheet();
+  if (headers.length === 0) return [];
 
   return dataRows.map((row) => {
     const quote = {};
@@ -127,16 +133,15 @@ async function fetchAllRows() {
 }
 
 async function findRow(id) {
-  const { sheetId, title, rows } = await loadSheet();
-  if (rows.length === 0) return null;
-  const [headers, ...dataRows] = rows;
+  const { sheetId, title, headers, dataRows } = await loadSheet();
+  if (headers.length === 0) return null;
   const idIndex = headers.indexOf(ID_COLUMN);
   if (idIndex === -1) {
-    throw new Error(`Column "${ID_COLUMN}" not found in sheet header row`);
+    throw new Error(`Column "${ID_COLUMN}" not found in row ${HEADER_ROW} (the header row)`);
   }
   const dataIndex = dataRows.findIndex((row) => String(row[idIndex] ?? "") === String(id));
   if (dataIndex === -1) return null;
-  return { sheetId, title, headers, rowNumber: dataIndex + 2 }; // +1 for header row, +1 for 1-indexing
+  return { sheetId, title, headers, rowNumber: dataIndex + HEADER_ROW + 1 };
 }
 
 async function updateRowById(id, fields) {
