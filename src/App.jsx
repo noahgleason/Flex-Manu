@@ -8,7 +8,10 @@ import Quote from "./pages/Quote.jsx";
 import PartnerRFQ from "./pages/PartnerRFQ.jsx";
 import ThankYou from "./pages/ThankYou.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import DashboardLayout from "./pages/dashboard/DashboardLayout.jsx";
+import DashboardOverview from "./pages/dashboard/DashboardOverview.jsx";
+import DashboardStatusView from "./pages/dashboard/DashboardStatusView.jsx";
+import { STATUS_LEVELS } from "./pages/dashboard/constants.js";
 import NotFound from "./pages/NotFound.jsx";
 
 export default function App() {
@@ -23,7 +26,13 @@ export default function App() {
         <Route path="partner-rfq" element={<PartnerRFQ />} />
         <Route path="thank-you" element={<ThankYou />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardOverview />} />
+          <Route path="all" element={<DashboardStatusView status={null} />} />
+          {STATUS_LEVELS.map(({ label, slug }) => (
+            <Route key={slug} path={slug} element={<DashboardStatusView status={label} />} />
+          ))}
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

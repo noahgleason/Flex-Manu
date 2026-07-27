@@ -1,53 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Seo from "../components/Seo.jsx";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import Seo from "../../components/Seo.jsx";
+import { authedFetch, sessionExpiredMessage } from "./api.js";
+import { ID_COLUMN, STATUS_LEVELS } from "./constants.js";
 
-const ID_COLUMN = "RFQ #";
-const STATUS_OPTIONS = ["New", "Quoted", "Awaiting PO", "In Production", "Shipped"];
-const FUNCTIONS_BASE = "/.netlify/functions";
-
-async function authedFetch(path, options = {}) {
-  const widget = window.netlifyIdentity;
-  const currentUser = widget && widget.currentUser();
-  if (!currentUser) {
-    const err = new Error("Not authenticated");
-    err.status = 401;
-    throw err;
-  }
-
-  const token = await currentUser.jwt();
-  const res = await fetch(`${FUNCTIONS_BASE}${path}`, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!res.ok) {
-    let message = `Request failed (${res.status})`;
-    try {
-      const data = await res.json();
-      if (data && data.error) message = data.error;
-    } catch {
-      // response wasn't JSON — fall back to the generic message
-    }
-    const err = new Error(message);
-    err.status = res.status;
-    throw err;
-  }
-
-  return res.status === 204 ? null : res.json();
-}
-
-function sessionExpiredMessage(err) {
-  return err.status === 401
-    ? "Your session has expired. Please log in again."
-    : err.message || "Something went wrong.";
-}
-
-export default function Dashboard() {
+export default function DashboardLayout() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [checked, setChecked] = useState(false);
@@ -209,77 +166,36 @@ export default function Dashboard() {
           </button>
         </div>
 
-        <div style={{ marginTop: 40 }}>
-          <h2 style={{ fontSize: 19, textTransform: "uppercase", margin: "0 0 16px" }}>Quotes</h2>
+        <nav style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 32, borderBottom: "1px solid var(--color-divider)", paddingBottom: 16 }}>
+          <NavLink to="/dashboard" end className={({ isActive }) => `btn ${isActive ? "btn-primary" : "btn-secondary"}`}>
+            Overview
+          </NavLink>
+          <NavLink to="/dashboard/all" className={({ isActive }) => `btn ${isActive ? "btn-primary" : "btn-secondary"}`}>
+            All
+          </NavLink>
+          {STATUS_LEVELS.map(({ label, slug }) => (
+            <NavLink key={slug} to={`/dashboard/${slug}`} className={({ isActive }) => `btn ${isActive ? "btn-primary" : "btn-secondary"}`}>
+              {label}
+            </NavLink>
+          ))}
+        </nav>
 
-          {quotesError && (
-            <p style={{ fontSize: 14, color: "var(--color-accent-700)", margin: "0 0 16px" }}>{quotesError}</p>
-          )}
+        {quotesError && (
+          <p style={{ fontSize: 14, color: "var(--color-accent-700)", margin: "20px 0 0" }}>{quotesError}</p>
+        )}
 
+        <div style={{ marginTop: 28 }}>
           {quotesLoading ? (
             <p style={{ fontSize: 15, color: "color-mix(in srgb,var(--color-text) 70%,transparent)" }}>Loading quotes…</p>
-          ) : quotes.length === 0 ? (
-            <p style={{ fontSize: 15, color: "color-mix(in srgb,var(--color-text) 70%,transparent)" }}>No quotes found.</p>
           ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: 20 }}>
-              {quotes.map((quote) => {
-                const id = quote[ID_COLUMN];
-                const isSaving = savingIds.has(id);
-                const statusValue = quote.Status || "";
-
-                return (
-                  <div key={id} className="blueprint card" style={{ padding: 20 }}>
-                    <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-                    <span className="card-kicker">RFQ {id}</span>
-                    <h3 className="card-title">{quote["Customer Name"] || "—"}</h3>
-                    {quote.Company && <p className="card-meta" style={{ margin: 0 }}>{quote.Company}</p>}
-                    <p className="card-body">{quote["Part #/Description"] || "—"}</p>
-                    <p className="card-meta" style={{ margin: 0 }}>Qty: {quote.Quantity || "—"}</p>
-
-                    <div className="field" style={{ marginTop: 8 }}>
-                      <label htmlFor={`status-${id}`}>Status</label>
-                      <select
-                        id={`status-${id}`}
-                        className="input"
-                        value={statusValue}
-                        disabled={isSaving}
-                        onChange={(e) => handleStatusChange(quote, e.target.value)}
-                      >
-                        {!statusValue && <option value="" disabled>Select status…</option>}
-                        {!STATUS_OPTIONS.includes(statusValue) && statusValue && (
-                          <option value={statusValue}>{statusValue}</option>
-                        )}
-                        {STATUS_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
-                      <a
-                        className="btn btn-secondary"
-                        href={quote.mailto || undefined}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-disabled={!quote.mailto}
-                        style={!quote.mailto ? { opacity: 0.45, pointerEvents: "none" } : undefined}
-                      >
-                        Forward
-                      </a>
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        disabled={isSaving}
-                        onClick={() => handleDelete(quote)}
-                        style={{ color: "#e0554f", borderColor: "#e0554f" }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <Outlet
+              context={{
+                quotes,
+                savingIds,
+                onStatusChange: handleStatusChange,
+                onDelete: handleDelete,
+              }}
+            />
           )}
         </div>
       </div>
