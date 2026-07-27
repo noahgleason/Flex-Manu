@@ -13,6 +13,18 @@
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+(function () {
+  var widget = window.netlifyIdentity;
+  if (!widget) return;
+  var hash = window.location.hash || "";
+  if (hash.indexOf("invite_token=") !== -1 || hash.indexOf("confirmation_token=") !== -1) {
+    widget.on("init", function () { widget.open(); });
+  }
+  widget.init();
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
