@@ -36,7 +36,7 @@ export default function Home() {
           <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "12px 36px", marginTop: 44, paddingTop: 26, borderTop: "1px solid var(--color-divider)", fontFamily: "var(--font-heading)", fontSize: 15, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 72%,transparent)" }}>
-          <span>Family-owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Est. 1974</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Metro Detroit</span>
+          <span>Family-owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Est. 1974</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Metro Detroit</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Veteran-Owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>U.S.-Based</span>
         </div>
       </section>
 

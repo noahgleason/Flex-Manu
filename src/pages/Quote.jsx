@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Seo from "../components/Seo.jsx";
+
+const VISIT_COUNT_KEY = "fx_quote_visit_count";
 
 export default function Quote() {
   const [submitting, setSubmitting] = useState(false);
+  const [customerStatus, setCustomerStatus] = useState("New Customer");
+
+  useEffect(() => {
+    try {
+      const prevVisits = parseInt(window.localStorage.getItem(VISIT_COUNT_KEY) || "0", 10);
+      window.localStorage.setItem(VISIT_COUNT_KEY, String(prevVisits + 1));
+      setCustomerStatus(prevVisits >= 1 ? "Returning Customer" : "New Customer");
+    } catch {
+      // localStorage unavailable (e.g. private browsing) — default to New Customer stands.
+    }
+  }, []);
 
   return (
     <>
@@ -39,6 +52,7 @@ export default function Quote() {
           >
             <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
             <input type="hidden" name="form-name" value="quote" />
+            <input type="hidden" name="customer_status" value={customerStatus} />
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 18 }}>
               <div className="field">
                 <label htmlFor="fx-name">Name</label>
@@ -59,7 +73,7 @@ export default function Quote() {
             </div>
             <div className="field">
               <label htmlFor="fx-qty">Quantity</label>
-              <input className="input" id="fx-qty" name="quantity" type="text" placeholder="e.g. 1, 12, 500, production run" />
+              <input className="input" id="fx-qty" name="quantity" type="number" min="1" step="1" placeholder="e.g. 1" />
             </div>
             <div className="field">
               <label htmlFor="fx-desc">Part description &mdash; what do you need?</label>

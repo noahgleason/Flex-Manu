@@ -14,7 +14,7 @@ export default function About() {
         <span className="fx-kick">About Flex Manufacturing</span>
         <h1 className="fx-display" style={{ maxWidth: "16ch" }}>Family-owned and machining since 1974</h1>
         <p style={{ fontSize: 18, lineHeight: 1.6, margin: "24px 0 0", color: "color-mix(in srgb,var(--color-text) 86%,transparent)" }}>
-          Flex Manufacturing, Inc. has been a custom gear and precision machining sourcing house for over 50 years. Founded in 1974 and still family-owned, we serve manufacturers across metro Detroit and beyond &mdash; the plants, mills and shops that keep aging equipment running.
+          Flex Manufacturing, Inc. has been a custom gear and precision machining sourcing house for 52 years in the trade. Founded in 1974 and still family-owned, we serve manufacturers across metro Detroit and beyond &mdash; the plants, mills and shops that keep aging equipment running.
         </p>
         <p style={{ fontSize: 18, lineHeight: 1.6, margin: "20px 0 0", color: "color-mix(in srgb,var(--color-text) 86%,transparent)" }}>
           Customers send us a print, a drawing, or a photo of a worn or broken part. We coordinate manufacturing through a deep network of trusted metro Detroit shops &mdash; matching each job to the right machine and craftsman for gears, splines, grinding, turning, milling and reverse engineering, at any quantity.
@@ -27,6 +27,7 @@ export default function About() {
             { value: "1974", label: "Established" },
             { value: "50+", label: "Years in business" },
             { value: "2nd", label: "Generation, family-owned" },
+            { value: "USA", label: "Veteran-Owned, U.S.-Based" },
           ].map(({ value, label }) => (
             <div key={label} style={{ background: "var(--color-bg)", padding: 22 }}>
               <div style={{ fontFamily: "var(--font-heading)", fontSize: 36, lineHeight: 1 }}>{value}</div>

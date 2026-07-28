@@ -54,11 +54,12 @@
      Netlify's HTML parser never sees. Field names must match src/pages/Quote.jsx. -->
 <form name="quote" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
   <input type="hidden" name="form-name" value="quote">
+  <input type="hidden" name="customer_status" value="">
   <input type="text" name="name">
   <input type="text" name="company">
   <input type="email" name="email">
   <input type="tel" name="phone">
-  <input type="text" name="quantity">
+  <input type="number" name="quantity">
   <textarea name="description"></textarea>
   <input type="file" name="attachment">
   <input type="text" name="bot-field">
@@ -67,11 +68,12 @@
      same build-time reason as above. Not linked from nav/sitemap — direct-link only. -->
 <form name="partner-rfq" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
   <input type="hidden" name="form-name" value="partner-rfq">
+  <input type="hidden" name="customer_status" value="Returning Customer">
   <input type="text" name="name">
   <input type="text" name="company">
   <input type="email" name="email">
   <input type="tel" name="phone">
-  <input type="text" name="quantity">
+  <input type="number" name="quantity">
   <textarea name="description"></textarea>
   <input type="file" name="attachment">
   <input type="text" name="bot-field">

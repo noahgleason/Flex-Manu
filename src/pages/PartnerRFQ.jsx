@@ -40,6 +40,7 @@ export default function PartnerRFQ() {
           >
             <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
             <input type="hidden" name="form-name" value="partner-rfq" />
+            <input type="hidden" name="customer_status" value="Returning Customer" />
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 18 }}>
               <div className="field">
                 <label htmlFor="fx-name">Name</label>
@@ -60,7 +61,7 @@ export default function PartnerRFQ() {
             </div>
             <div className="field">
               <label htmlFor="fx-qty">Quantity</label>
-              <input className="input" id="fx-qty" name="quantity" type="text" placeholder="e.g. 1, 12, 500, production run" />
+              <input className="input" id="fx-qty" name="quantity" type="number" min="1" step="1" placeholder="e.g. 1" />
             </div>
             <div className="field">
               <label htmlFor="fx-desc">Part description &mdash; what do you need?</label>
