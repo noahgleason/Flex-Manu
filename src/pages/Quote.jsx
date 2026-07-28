@@ -29,7 +29,7 @@ export default function Quote() {
         <span className="fx-kick">Request a Quote</span>
         <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Send your print &mdash; get a quote back fast</h1>
         <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "58ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
-          Tell us what you need and attach a file. No CAD file? A photo or hand sketch of the part works too. Prefer to talk? Call{" "}
+          Tell us what you need and attach a file. Prefer to talk? Call{" "}
           <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 791-8060</a>.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "clamp(28px,4vw,48px)", marginTop: 36, alignItems: "start" }}>

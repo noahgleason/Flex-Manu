@@ -127,7 +127,7 @@ export default function Home() {
           <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
           <h2 style={{ fontSize: "clamp(28px,3.5vw,42px)", textTransform: "uppercase", margin: 0, maxWidth: "20ch" }}>Have a print? Get a quote back fast.</h2>
           <p style={{ fontSize: 16, lineHeight: 1.55, maxWidth: "54ch", margin: "16px 0 0", color: "color-mix(in srgb,var(--color-text) 80%,transparent)" }}>
-            Upload a PDF, STEP, DWG &mdash; or just a photo of the part. No CAD file? A photo or hand sketch is fine.
+            Upload a PDF, STEP, DWG &mdash; or just a photo of the part.
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 26 }}>
             <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
