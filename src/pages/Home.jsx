@@ -109,15 +109,15 @@ export default function Home() {
       <section style={{ background: "var(--color-accent-900)", color: "var(--color-text)" }}>
         <div className="wrap" style={{ paddingTop: "clamp(44px,5vw,72px)", paddingBottom: "clamp(44px,5vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 28, alignItems: "center" }}>
           <div>
-            <span style={{ fontFamily: "var(--font-heading)", fontSize: 13, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--color-accent-300)" }}>Reverse Engineering</span>
-            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", textTransform: "uppercase", margin: "12px 0 0", lineHeight: 1.05 }}>Broken or obsolete gear? No drawing?</h2>
+            <span style={{ fontFamily: "var(--font-heading)", fontSize: 13, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--color-accent-300)" }}>Full-Spectrum Capabilities</span>
+            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", textTransform: "uppercase", margin: "12px 0 0", lineHeight: 1.05 }}>Gears, splines, worm shafts &amp; special machine components &mdash; up to 240&Prime; diameter</h2>
             <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "52ch", margin: "16px 0 0", color: "color-mix(in srgb,var(--color-text) 85%,transparent)" }}>
-              Send us the part or a photo. We measure it, reverse engineer it, and manufacture a replacement &mdash; even when the OEM is gone.
+              Turning, milling, boring, drilling, grinding, slotting, honing, polishing, hobbing, shaping, broaching, shaving, tooth rounding, EDM, threading, tapping &amp; reaming &mdash; in steel, cast iron, brass, plastic &amp; aluminum.
             </p>
           </div>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <Link to="/reverse-engineering" className="btn" style={{ textDecoration: "none", background: "var(--color-text)", color: "var(--color-bg)", borderColor: "var(--color-text)", fontSize: 15, padding: "12px 22px" }}>How it works &rarr;</Link>
-            <Link to="/quote" className="btn" style={{ textDecoration: "none", background: "transparent", color: "var(--color-text)", borderColor: "color-mix(in srgb,var(--color-text) 55%,transparent)", fontSize: 15, padding: "12px 22px" }}>Send your part</Link>
+            <Link to="/capabilities" className="btn" style={{ textDecoration: "none", background: "var(--color-text)", color: "var(--color-bg)", borderColor: "var(--color-text)", fontSize: 15, padding: "12px 22px" }}>See full capabilities &amp; specs &rarr;</Link>
+            <Link to="/quote" className="btn" style={{ textDecoration: "none", background: "transparent", color: "var(--color-text)", borderColor: "color-mix(in srgb,var(--color-text) 55%,transparent)", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
           </div>
         </div>
       </section>

@@ -21,7 +21,7 @@ export default function Quote() {
     <>
       <Seo
         title="Request a Quote | Flex Manufacturing, Inc. — Metro Detroit Gear Manufacturer"
-        description="Request a quote for custom gears, splines, grinding, turning, milling or gear reverse engineering. Attach a print, CAD file, or photo of the part. Family-owned in metro Detroit since 1974."
+        description="Request a quote for custom gears, splines, grinding, turning, or milling. Attach a print, CAD file, or photo of the part. Family-owned in metro Detroit since 1974."
         path="/quote"
       />
 
@@ -109,13 +109,6 @@ export default function Quote() {
               </div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: "14px 0 0", color: "color-mix(in srgb,var(--color-text) 78%,transparent)" }}>
                 Flex Manufacturing, Inc.<br />44805 Trinity Dr<br />Clinton Township, MI 48038
-              </p>
-            </div>
-            <div className="blueprint" style={{ padding: 24, background: "color-mix(in srgb,var(--color-accent) 8%,transparent)" }}>
-              <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-              <p style={{ fontSize: 14, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 82%,transparent)" }}>
-                <strong style={{ fontFamily: "var(--font-heading)", textTransform: "uppercase", letterSpacing: ".04em" }}>No drawing?</strong><br />
-                A photo or hand sketch is fine. We reverse engineer from the part itself &mdash; obsolete and OEM-orphaned gears welcome.
               </p>
             </div>
           </aside>

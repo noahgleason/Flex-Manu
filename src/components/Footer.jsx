@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const SITE_LINKS = [
   { to: "/", label: "Home" },
   { to: "/capabilities", label: "Capabilities" },
-  { to: "/reverse-engineering", label: "Reverse Engineering" },
   { to: "/about", label: "About" },
   { to: "/quote", label: "Request a Quote" },
 ];
@@ -47,7 +46,7 @@ export default function Footer() {
       </div>
       <div style={{ borderTop: "1px solid color-mix(in srgb,var(--color-text) 16%,transparent)" }}>
         <div className="wrap" style={{ paddingTop: 18, paddingBottom: 18, display: "flex", flexWrap: "wrap", gap: "6px 20px", alignItems: "center", justifyContent: "space-between", fontSize: 12, color: "color-mix(in srgb,var(--color-text) 60%,transparent)" }}>
-          <span>&copy; 1974&ndash;2026 Flex Manufacturing, Inc. &nbsp;&middot;&nbsp; Custom gear manufacturer &mdash; large diameter gears, spline grinding &amp; gear reverse engineering &mdash; Clinton Township, Michigan.</span>
+          <span>&copy; 1974&ndash;2026 Flex Manufacturing, Inc. &nbsp;&middot;&nbsp; Custom gear manufacturer &mdash; large diameter gears, spline grinding &amp; precision machining &mdash; Clinton Township, Michigan.</span>
           <Link to="/privacy-policy" style={{ color: "color-mix(in srgb,var(--color-text) 60%,transparent)" }}>Privacy Policy</Link>
         </div>
       </div>

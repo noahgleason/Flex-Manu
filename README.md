@@ -21,7 +21,6 @@ npm run preview   # preview the production build locally
 
 - `Home.jsx` — `/`
 - `Capabilities.jsx` — `/capabilities`
-- `ReverseEngineering.jsx` — `/reverse-engineering`
 - `About.jsx` — `/about`
 - `Quote.jsx` — `/quote` (Netlify Forms, incl. file upload for prints/photos)
 - `ThankYou.jsx` — `/thank-you` — post-submit confirmation page (not in nav; used as the form's redirect target)

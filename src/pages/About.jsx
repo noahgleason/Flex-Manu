@@ -17,7 +17,7 @@ export default function About() {
           Flex Manufacturing, Inc. has been a custom gear and precision machining sourcing house for 52 years in the trade. Founded in 1974 and still family-owned, we serve manufacturers across metro Detroit and beyond &mdash; the plants, mills and shops that keep aging equipment running.
         </p>
         <p style={{ fontSize: 18, lineHeight: 1.6, margin: "20px 0 0", color: "color-mix(in srgb,var(--color-text) 86%,transparent)" }}>
-          Customers send us a print, a drawing, or a photo of a worn or broken part. We coordinate manufacturing through a deep network of trusted metro Detroit shops &mdash; matching each job to the right machine and craftsman for gears, splines, grinding, turning, milling and reverse engineering, at any quantity.
+          Customers send us a print, a drawing, or a photo of a worn or broken part. We coordinate manufacturing through a deep network of trusted metro Detroit shops &mdash; matching each job to the right machine and craftsman for gears, splines, grinding, turning and milling, at any quantity.
         </p>
         <p style={{ fontSize: 18, lineHeight: 1.6, margin: "20px 0 0", color: "color-mix(in srgb,var(--color-text) 86%,transparent)" }}>
           Now into its second generation, the business is being revitalized by the founder's grandson &mdash; same reputation for getting hard parts made right, backed by five decades of relationships.

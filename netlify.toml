@@ -17,7 +17,12 @@
 
 [[redirects]]
   from = "/reverse-engineering.html"
-  to = "/reverse-engineering"
+  to = "/capabilities"
+  status = 301
+
+[[redirects]]
+  from = "/reverse-engineering"
+  to = "/capabilities"
   status = 301
 
 [[redirects]]

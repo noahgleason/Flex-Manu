@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import Capabilities from "./pages/Capabilities.jsx";
-import ReverseEngineering from "./pages/ReverseEngineering.jsx";
 import About from "./pages/About.jsx";
 import Quote from "./pages/Quote.jsx";
 import PartnerRFQ from "./pages/PartnerRFQ.jsx";
@@ -11,6 +10,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import DashboardLayout from "./pages/dashboard/DashboardLayout.jsx";
 import DashboardOverview from "./pages/dashboard/DashboardOverview.jsx";
 import DashboardStatusView from "./pages/dashboard/DashboardStatusView.jsx";
+import AddQuote from "./pages/dashboard/AddQuote.jsx";
 import { STATUS_LEVELS } from "./pages/dashboard/constants.js";
 import NotFound from "./pages/NotFound.jsx";
 
@@ -20,7 +20,6 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="capabilities" element={<Capabilities />} />
-        <Route path="reverse-engineering" element={<ReverseEngineering />} />
         <Route path="about" element={<About />} />
         <Route path="quote" element={<Quote />} />
         <Route path="partner-rfq" element={<PartnerRFQ />} />
@@ -32,6 +31,7 @@ export default function App() {
           {STATUS_LEVELS.map(({ label, slug }) => (
             <Route key={slug} path={slug} element={<DashboardStatusView status={label} />} />
           ))}
+          <Route path="add" element={<AddQuote />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
