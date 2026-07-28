@@ -90,20 +90,20 @@ export default function DashboardLayout() {
     });
   };
 
-  const handleStatusChange = async (quote, newStatus) => {
+  const handleFieldChange = async (quote, fieldKey, newValue) => {
     const id = quote[ID_COLUMN];
-    const previousStatus = quote.Status;
+    const previousValue = quote[fieldKey];
 
     markSaving(id, true);
-    setQuotes((qs) => qs.map((q) => (q[ID_COLUMN] === id ? { ...q, Status: newStatus } : q)));
+    setQuotes((qs) => qs.map((q) => (q[ID_COLUMN] === id ? { ...q, [fieldKey]: newValue } : q)));
 
     try {
       await authedFetch("/update-quote", {
         method: "POST",
-        body: JSON.stringify({ id, fields: { Status: newStatus } }),
+        body: JSON.stringify({ id, fields: { [fieldKey]: newValue } }),
       });
     } catch (err) {
-      setQuotes((qs) => qs.map((q) => (q[ID_COLUMN] === id ? { ...q, Status: previousStatus } : q)));
+      setQuotes((qs) => qs.map((q) => (q[ID_COLUMN] === id ? { ...q, [fieldKey]: previousValue } : q)));
       setQuotesError(sessionExpiredMessage(err));
       if (err.status === 401 && window.netlifyIdentity) {
         window.netlifyIdentity.open("login");
@@ -192,7 +192,8 @@ export default function DashboardLayout() {
               context={{
                 quotes,
                 savingIds,
-                onStatusChange: handleStatusChange,
+                onStatusChange: (quote, newStatus) => handleFieldChange(quote, "Status", newStatus),
+                onFieldChange: handleFieldChange,
                 onDelete: handleDelete,
               }}
             />

@@ -3,7 +3,7 @@ import QuoteCard from "./QuoteCard.jsx";
 import { ID_COLUMN } from "./constants.js";
 
 export default function DashboardStatusView({ status }) {
-  const { quotes, savingIds, onStatusChange, onDelete } = useOutletContext();
+  const { quotes, savingIds, onStatusChange, onFieldChange, onDelete } = useOutletContext();
 
   const filtered = status ? quotes.filter((q) => (q.Status || "New") === status) : quotes;
 
@@ -23,6 +23,7 @@ export default function DashboardStatusView({ status }) {
           quote={quote}
           isSaving={savingIds.has(quote[ID_COLUMN])}
           onStatusChange={onStatusChange}
+          onFieldChange={onFieldChange}
           onDelete={onDelete}
         />
       ))}

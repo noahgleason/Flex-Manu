@@ -9,3 +9,5 @@ export const STATUS_LEVELS = [
 ];
 
 export const STATUS_OPTIONS = STATUS_LEVELS.map((s) => s.label);
+
+export const CUSTOMER_STATUS_OPTIONS = ["New Customer", "Returning Customer"];
