@@ -1,5 +1,5 @@
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwpm9WvPZB8FfV9eGOEJh2XEyESX8gF5C_Wum90WaBKelb8Y-qSLAQtSrWNRcYWmo6X/exec";
+  "https://script.google.com/macros/s/AKfycbwUbVr5WXLJk6i55m0_jOdjZNvzyrLkXC1Ceew0XZvEuK0cG1oqefn1l51VCHtsxFC3/exec";
 
 // Netlify's outgoing webhook expects a fast response and retries on
 // timeout/non-2xx, which duplicates rows since Apps Script Web Apps are slow
