@@ -178,6 +178,9 @@ export default function DashboardLayout() {
               {label}
             </NavLink>
           ))}
+          <NavLink to="/dashboard/add" className={({ isActive }) => `btn ${isActive ? "btn-primary" : "btn-secondary"}`}>
+            + Add Quote
+          </NavLink>
         </nav>
 
         {quotesError && (
@@ -195,6 +198,7 @@ export default function DashboardLayout() {
                 onStatusChange: (quote, newStatus) => handleFieldChange(quote, "Status", newStatus),
                 onFieldChange: handleFieldChange,
                 onDelete: handleDelete,
+                refreshQuotes: loadQuotes,
               }}
             />
           )}
