@@ -51,7 +51,8 @@ export default function PrivacyPolicy() {
             <h2 style={{ fontSize: 19, textTransform: "uppercase", margin: "0 0 8px" }}>Contact Us</h2>
             <p style={{ fontSize: 15, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 82%,transparent)" }}>
               If you have questions about this privacy policy or how your information is handled, contact us at{" "}
-              <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 791-8060</a> or through our{" "}
+              <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 791-8060</a>,{" "}
+              <a href="mailto:flexmfg@sbcglobal.net" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>flexmfg@sbcglobal.net</a>, or through our{" "}
               <a href="/quote" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>Request a Quote</a> page.
             </p>
           </div>

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import Capabilities from "./pages/Capabilities.jsx";
+import Services from "./pages/Services.jsx";
 import About from "./pages/About.jsx";
 import Quote from "./pages/Quote.jsx";
 import PartnerRFQ from "./pages/PartnerRFQ.jsx";
@@ -20,6 +21,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="capabilities" element={<Capabilities />} />
+        <Route path="services" element={<Services />} />
         <Route path="about" element={<About />} />
         <Route path="quote" element={<Quote />} />
         <Route path="partner-rfq" element={<PartnerRFQ />} />

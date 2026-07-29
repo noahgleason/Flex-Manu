@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const SITE_LINKS = [
   { to: "/", label: "Home" },
   { to: "/capabilities", label: "Capabilities" },
+  { to: "/services", label: "Services" },
   { to: "/about", label: "About" },
   { to: "/quote", label: "Request a Quote" },
 ];
@@ -22,7 +23,7 @@ export default function Footer() {
             <span style={{ fontFamily: "var(--font-heading)", fontSize: 18 }}>FLEX MANUFACTURING, INC.</span>
           </div>
           <p style={{ fontSize: 14, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 72%,transparent)" }}>
-            Custom gears, splines &amp; precision machining. Family-owned since 1974, serving metro Detroit and beyond.
+            Custom gears, splines &amp; precision machining. Family-owned since 1960, serving metro Detroit and beyond.
           </p>
         </div>
         <div>
@@ -30,7 +31,8 @@ export default function Footer() {
           <p style={{ fontSize: 14, lineHeight: 1.7, margin: 0, color: "color-mix(in srgb,var(--color-text) 80%,transparent)" }}>
             44805 Trinity Dr<br />Clinton Township, MI 48038<br />
             <a href="tel:+15867918060" style={{ color: "var(--color-text)", fontWeight: 500 }}>Dave Gleason: (586) 791-8060</a><br />
-            <a href="tel:+16166907648" style={{ color: "var(--color-text)", fontWeight: 500 }}>Noah Gleason: (616) 690-7648</a>
+            <a href="tel:+16166907648" style={{ color: "var(--color-text)", fontWeight: 500 }}>Noah Gleason: (616) 690-7648</a><br />
+            <a href="mailto:flexmfg@sbcglobal.net" style={{ color: "var(--color-text)", fontWeight: 500 }}>flexmfg@sbcglobal.net</a>
           </p>
         </div>
         <div>
@@ -46,7 +48,7 @@ export default function Footer() {
       </div>
       <div style={{ borderTop: "1px solid color-mix(in srgb,var(--color-text) 16%,transparent)" }}>
         <div className="wrap" style={{ paddingTop: 18, paddingBottom: 18, display: "flex", flexWrap: "wrap", gap: "6px 20px", alignItems: "center", justifyContent: "space-between", fontSize: 12, color: "color-mix(in srgb,var(--color-text) 60%,transparent)" }}>
-          <span>&copy; 1974&ndash;2026 Flex Manufacturing, Inc. &nbsp;&middot;&nbsp; Custom gear manufacturer &mdash; large diameter gears, spline grinding &amp; precision machining &mdash; Clinton Township, Michigan.</span>
+          <span>&copy; 1960&ndash;2026 Flex Manufacturing, Inc. &nbsp;&middot;&nbsp; Custom gear manufacturer &mdash; large diameter gears, spline grinding &amp; precision machining &mdash; Clinton Township, Michigan.</span>
           <Link to="/privacy-policy" style={{ color: "color-mix(in srgb,var(--color-text) 60%,transparent)" }}>Privacy Policy</Link>
         </div>
       </div>

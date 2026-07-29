@@ -21,7 +21,7 @@ export default function Quote() {
     <>
       <Seo
         title="Request a Quote | Flex Manufacturing, Inc. — Metro Detroit Gear Manufacturer"
-        description="Request a quote for custom gears, splines, grinding, turning, or milling. Attach a print, CAD file, or photo of the part. Family-owned in metro Detroit since 1974."
+        description="Request a quote for custom gears, splines, grinding, turning, or milling. Attach a print, CAD file, or photo of the part. Family-owned in metro Detroit since 1960."
         path="/quote"
       />
 
@@ -106,6 +106,7 @@ export default function Quote() {
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 <a href="tel:+15867918060" style={{ fontFamily: "var(--font-heading)", fontSize: 21, color: "var(--color-accent-700)", textDecoration: "none", letterSpacing: ".01em" }}>Dave: (586) 791-8060</a>
                 <a href="tel:+16166907648" style={{ fontFamily: "var(--font-heading)", fontSize: 21, color: "var(--color-accent-700)", textDecoration: "none", letterSpacing: ".01em" }}>Noah: (616) 690-7648</a>
+                <a href="mailto:flexmfg@sbcglobal.net" style={{ fontFamily: "var(--font-heading)", fontSize: 15, color: "var(--color-accent-700)", textDecoration: "none", letterSpacing: ".01em" }}>flexmfg@sbcglobal.net</a>
               </div>
               <p style={{ fontSize: 14, lineHeight: 1.55, margin: "14px 0 0", color: "color-mix(in srgb,var(--color-text) 78%,transparent)" }}>
                 Flex Manufacturing, Inc.<br />44805 Trinity Dr<br />Clinton Township, MI 48038
