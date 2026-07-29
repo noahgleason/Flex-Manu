@@ -109,7 +109,7 @@ export default function PhotoCarousel({ photos }) {
       <div className="fx-carousel-track" ref={trackRef}>
         {photos.map(({ src, alt }, i) => (
           <figure
-            className="blueprint duotone fx-carousel-slide"
+            className={`blueprint ${i % 2 === 0 ? "duotone" : "duotone-2"} fx-carousel-slide`}
             key={src}
             ref={(el) => { slidesRef.current[i] = el; }}
           >

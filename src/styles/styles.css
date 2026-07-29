@@ -3,8 +3,10 @@
    @import inside a stylesheet blocks discovery until this file itself loads, creating a serial request waterfall. */
 
 :root {
-  --color-bg: #14171a;
-  --color-surface: #1c2126;
+  /* Base neutral is tuned toward blued/oxidized tool steel rather than a
+     generic warm near-black — same darkness, a hair of steel-blue in it. */
+  --color-bg: #12161c;
+  --color-surface: #1a212a;
   --color-text: #e8e9ea;
   --color-accent: #f0a840;
   --color-accent-2: #728fab;
@@ -40,7 +42,7 @@
   --color-accent-2-600: #627d98;
   --color-accent-2-700: #486077;
   --color-accent-2-800: #314457;
-  --color-accent-2-900: #1f2d3a;
+  --color-accent-2-900: #0f1e2c;
 
   --font-heading: "Chakra Petch", system-ui, sans-serif;
   --font-heading-weight: 600;
@@ -98,6 +100,27 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-headi
 .duotone{position:relative;overflow:hidden}
 .duotone::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:var(--color-accent);mix-blend-mode:color}
+/* Second tint, alternated with .duotone across photo grids so the whole
+   page isn't washed in one identical color — brass on some frames,
+   blueprint-blue on others, same way a shop mixes ferrous and non-ferrous
+   parts on a bench. */
+.duotone-2{position:relative;overflow:hidden}
+.duotone-2::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:var(--color-accent-2);mix-blend-mode:color}
+
+/* Blueprint grid — a faint drafting-table grid, referencing the actual
+   paper the "blueprint" motif is named after (not just the hairline
+   corner ticks). Two line weights: a fine 1-unit grid and a heavier
+   5-unit index line, the way real drafting vellum is ruled. */
+.fx-gridtex{
+  position:relative;
+  background-image:
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 100px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 100px),
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-text) 8%, transparent) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-text) 8%, transparent) 0 1px, transparent 1px 20px);
+  background-position: -1px -1px;
+}
 
 /* ══════════════════════════════════════════════════════════════════════════
    Components — built with the tokens above. Plain CSS

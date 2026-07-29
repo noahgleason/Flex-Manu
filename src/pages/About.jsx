@@ -43,7 +43,7 @@ export default function About() {
             {[
               "Nuclear Power", "Pharmaceutical", "Packaging", "Filling", "Aerospace",
               "Mining", "Power Transmission", "Wind & Solar", "Steel, Paper & Plastic", "Military",
-            ].map((industry) => (
+            ].map((industry, i) => (
               <span
                 key={industry}
                 style={{
@@ -52,7 +52,7 @@ export default function About() {
                   letterSpacing: ".04em",
                   textTransform: "uppercase",
                   padding: "9px 16px",
-                  border: "1px solid var(--color-divider)",
+                  border: `1px solid color-mix(in srgb,${i % 2 === 0 ? "var(--color-accent)" : "var(--color-accent-2)"} 45%,var(--color-divider))`,
                   color: "color-mix(in srgb,var(--color-text) 82%,transparent)",
                 }}
               >

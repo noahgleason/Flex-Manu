@@ -36,7 +36,7 @@ export default function Home() {
           <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "12px 36px", marginTop: 44, paddingTop: 26, borderTop: "1px solid var(--color-divider)", fontFamily: "var(--font-heading)", fontSize: 15, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 72%,transparent)" }}>
-          <span>Family-owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Est. 1960</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Metro Detroit</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Veteran-Owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>U.S.-Based</span>
+          <span>Family-owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Est. 1960</span><span style={{ color: "var(--color-accent-2)" }}>&bull;</span><span>Metro Detroit</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Veteran-Owned</span><span style={{ color: "var(--color-accent-2)" }}>&bull;</span><span>U.S.-Based</span>
         </div>
       </section>
 
@@ -49,11 +49,11 @@ export default function Home() {
             { title: "Grinding & Honing", body: "All surfaces, ¼″–48″ dia × 13′ long. OD, ID, surface & jig; centerless to 20′, Blanchard, gear-tooth & spline grinding.", img: "cylindrical-shaft-grinding.jpg" },
             { title: "Turning", body: "To 156″ dia × 96″ swing (VTL) and 42″ × 160″ long. CNC, screw machine, gun drilling; rolls, spindles, axles, shafts.", img: "machinist-large-lathe.jpg" },
             { title: "Milling, Boring & Drilling", body: "To 6′ square cube. Five-axis CNC, boring mill, clutch teeth, camslots & helix slots on weldments, castings & forgings.", img: "machinist-vertical-boring-mill.jpg" },
-          ].map(({ title, body, img }) => (
+          ].map(({ title, body, img }, i) => (
             <div key={title} className="blueprint" style={{ padding: 24 }}>
               <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
               {img && (
-                <figure className="blueprint duotone" style={{ margin: "0 0 16px", aspectRatio: "4/3" }}>
+                <figure className={`blueprint ${i % 2 === 0 ? "duotone" : "duotone-2"}`} style={{ margin: "0 0 16px", aspectRatio: "4/3" }}>
                   <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
                   <picture>
                     <source srcSet={`/assets/photos/${img.replace(/\.jpg$/, ".webp")}`} type="image/webp" />
@@ -106,10 +106,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ background: "var(--color-accent-900)", color: "var(--color-text)" }}>
+      <section className="fx-gridtex" style={{ backgroundColor: "var(--color-accent-2-900)", color: "var(--color-text)" }}>
         <div className="wrap" style={{ paddingTop: "clamp(44px,5vw,72px)", paddingBottom: "clamp(44px,5vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 28, alignItems: "center" }}>
           <div>
-            <span style={{ fontFamily: "var(--font-heading)", fontSize: 13, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--color-accent-300)" }}>Full-Spectrum Capabilities</span>
+            <span style={{ fontFamily: "var(--font-heading)", fontSize: 13, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--color-accent-2-300)" }}>Full-Spectrum Capabilities</span>
             <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", textTransform: "uppercase", margin: "12px 0 0", lineHeight: 1.05 }}>Gears, splines, worm shafts &amp; special machine components &mdash; up to 240&Prime; diameter</h2>
             <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "52ch", margin: "16px 0 0", color: "color-mix(in srgb,var(--color-text) 85%,transparent)" }}>
               Turning, milling, boring, drilling, grinding, slotting, honing, polishing, hobbing, shaping, broaching, shaving, tooth rounding, EDM, threading, tapping &amp; reaming &mdash; in steel, cast iron, brass, plastic &amp; aluminum.
