@@ -39,6 +39,11 @@ header.wrap {
   position: relative; display: flex; gap: clamp(16px,2.5vw,28px); overflow-x: auto;
   scroll-snap-type: x mandatory; scroll-padding-left: 0;
   padding-bottom: 4px; margin: 0 -1px; scrollbar-width: none;
+  /* Without this, touch browsers treat the track as a candidate for the
+     gesture on touchstart and hold it until the finger lifts, stalling
+     page scroll anywhere over the carousel. pan-y hands vertical panning
+     straight to the page and leaves only horizontal drags to the track. */
+  touch-action: pan-y;
 }
 .fx-carousel-track::-webkit-scrollbar { display: none; }
 .fx-carousel-slide {
