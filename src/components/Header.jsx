@@ -20,7 +20,7 @@ export default function Header() {
             <circle cx="12" cy="12" r="3"></circle>
             <path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path>
           </svg>
-          <span>FLEX<span style={{ color: "var(--color-accent-700)", fontWeight: 400 }}> MANUFACTURING</span></span>
+          <span>FLEX<span style={{ color: "var(--color-accent-2-700)", fontWeight: 400 }}> MANUFACTURING</span></span>
         </Link>
         <button
           type="button"

@@ -30,8 +30,8 @@ export default function About() {
             { value: "USA", label: "Veteran-Owned, U.S.-Based" },
           ].map(({ value, label }) => (
             <div key={label} style={{ background: "var(--color-bg)", padding: 22 }}>
-              <div style={{ fontFamily: "var(--font-heading)", fontSize: 36, lineHeight: 1 }}>{value}</div>
-              <div style={{ fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 65%,transparent)", marginTop: 6 }}>{label}</div>
+              <div style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 30, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>{value}</div>
+              <div style={{ fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 65%,transparent)", marginTop: 8 }}>{label}</div>
             </div>
           ))}
         </div>
@@ -52,7 +52,7 @@ export default function About() {
                   letterSpacing: ".04em",
                   textTransform: "uppercase",
                   padding: "9px 16px",
-                  border: `1px solid color-mix(in srgb,${i % 2 === 0 ? "var(--color-accent)" : "var(--color-accent-2)"} 45%,var(--color-divider))`,
+                  border: `1px solid color-mix(in srgb,${i % 2 === 0 ? "var(--color-oxide)" : "var(--color-accent-2)"} 45%,var(--color-divider))`,
                   color: "color-mix(in srgb,var(--color-text) 82%,transparent)",
                 }}
               >

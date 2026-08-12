@@ -1,16 +1,24 @@
 /* Industry — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md.
-   Font loading (Chakra Petch, IBM Plex Sans) is a <link rel="stylesheet"> in index.html's <head>, not a CSS @import here —
+   Font loading (Big Shoulders Display, IBM Plex Sans, IBM Plex Mono) is a <link rel="stylesheet"> in index.html's <head>, not a CSS @import here —
    @import inside a stylesheet blocks discovery until this file itself loads, creating a serial request waterfall. */
 
 :root {
-  /* Base neutral is tuned toward blued/oxidized tool steel rather than a
-     generic warm near-black — same darkness, a hair of steel-blue in it. */
-  --color-bg: #12161c;
-  --color-surface: #1a212a;
-  --color-text: #e8e9ea;
-  --color-accent: #f0a840;
-  --color-accent-2: #728fab;
-  --color-divider: color-mix(in srgb, #e8e9ea 16%, transparent);
+  /* Palette grounded in the shop floor itself, not a generic "industrial"
+     template: Mill Black is cold-rolled plate under shop fluorescents,
+     Ground Steel is a freshly surface-ground shaft, Temper Blue is the
+     bluing color tool steel takes on around 570°F heat-treat, Mill Scale
+     is the iron-oxide scale on hot-rolled stock before it's machined
+     clean, and Instrument Red is the red on a dial indicator's zero mark —
+     spent as the one bold accent (CTAs, the spec-tag callout signature),
+     never as ambient/decorative color. See DESIGN.md if this needs re-tuning. */
+  --color-bg: #14171b;
+  --color-surface: #1c2129;
+  --color-text: #d3d7db;
+  --color-accent: #c6402c;
+  --color-accent-2: #4a6e93;
+  --color-oxide: #7a5138;
+  --color-oxide-300: #c79a7c;
+  --color-divider: color-mix(in srgb, var(--color-text) 16%, transparent);
 
   /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
      same step of any role matches the others in visual value. */
@@ -24,29 +32,30 @@
   --color-neutral-800: #424244;
   --color-neutral-900: #0b0d0f;
 
-  --color-accent-100: #fbe8d0;
-  --color-accent-200: #f6d3a8;
-  --color-accent-300: #f3c98e;
-  --color-accent-400: #e79f4e;
-  --color-accent-500: #de8a2e;
-  --color-accent-600: #c8721c;
-  --color-accent-700: #e2a052;
-  --color-accent-800: #a35915;
-  --color-accent-900: #10233a;
+  --color-accent-100: #f8ded9;
+  --color-accent-200: #f0bdb3;
+  --color-accent-300: #e59c8b;
+  --color-accent-400: #d66f57;
+  --color-accent-500: #c6402c;
+  --color-accent-600: #a83322;
+  --color-accent-700: #de6852;
+  --color-accent-800: #7a2418;
+  --color-accent-900: #2a1210;
 
-  --color-accent-2-100: #eef6ff;
-  --color-accent-2-200: #d6ebff;
-  --color-accent-2-300: #bdd8f2;
-  --color-accent-2-400: #9ebbd8;
-  --color-accent-2-500: #7e9cb8;
-  --color-accent-2-600: #627d98;
-  --color-accent-2-700: #486077;
-  --color-accent-2-800: #314457;
-  --color-accent-2-900: #0f1e2c;
+  --color-accent-2-100: #e9f1f7;
+  --color-accent-2-200: #cfe0ec;
+  --color-accent-2-300: #a9c4da;
+  --color-accent-2-400: #7fa3c1;
+  --color-accent-2-500: #4a6e93;
+  --color-accent-2-600: #3b5a79;
+  --color-accent-2-700: #6e96ba;
+  --color-accent-2-800: #2c4560;
+  --color-accent-2-900: #16283a;
 
-  --font-heading: "Chakra Petch", system-ui, sans-serif;
-  --font-heading-weight: 600;
+  --font-heading: "Big Shoulders Display", system-ui, sans-serif;
+  --font-heading-weight: 700;
   --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --space-1: 3.4px;
   --space-2: 6.8px;
@@ -70,6 +79,17 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
+}
+/* Faint drafting-table grid under the whole page — what the scroll veil
+   (ScrollVeil.jsx, which drives body's own background-color directly)
+   fades toward at the top of each marketing page. Negative z-index keeps
+   this below all normal page content automatically, without having to
+   touch every wrapper's own stacking. */
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: .5;
+  background-image:
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-text) 5%, transparent) 0 1px, transparent 1px 88px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-text) 5%, transparent) 0 1px, transparent 1px 88px);
 }
 h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
 
@@ -97,16 +117,23 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-headi
 .blueprint > .corner.bl { bottom: -6px; left: -6px; }
 .blueprint > .corner.br { bottom: -6px; right: -6px; }
 
+/* Real shop photography, unified into the palette rather than sitting on
+   top of it: a full grayscale pass first (so none of a photo's original,
+   competing hues survive — fluorescent yellow, tarp blue, tie-down orange),
+   then a gradient re-color in the site's own tones via mix-blend-mode:color.
+   Two variants alternate across photo grids — Temper Blue and Mill Scale —
+   the same cool/warm pairing used everywhere else, never the red accent,
+   which stays reserved for CTAs and the spec-tag signature. */
 .duotone{position:relative;overflow:hidden}
+.duotone img,.duotone picture img{filter:grayscale(1) contrast(1.2) brightness(.8)}
 .duotone::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:var(--color-accent);mix-blend-mode:color}
-/* Second tint, alternated with .duotone across photo grids so the whole
-   page isn't washed in one identical color — brass on some frames,
-   blueprint-blue on others, same way a shop mixes ferrous and non-ferrous
-   parts on a bench. */
+  background:linear-gradient(155deg, var(--color-text) 0%, var(--color-accent-2) 50%, var(--color-bg) 100%);
+  mix-blend-mode:color;opacity:.94}
 .duotone-2{position:relative;overflow:hidden}
+.duotone-2 img,.duotone-2 picture img{filter:grayscale(1) contrast(1.2) brightness(.8)}
 .duotone-2::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:var(--color-accent-2);mix-blend-mode:color}
+  background:linear-gradient(155deg, var(--color-text) 0%, var(--color-oxide) 50%, var(--color-bg) 100%);
+  mix-blend-mode:color;opacity:.9}
 
 /* Blueprint grid — a faint drafting-table grid, referencing the actual
    paper the "blueprint" motif is named after (not just the hairline
@@ -330,4 +357,32 @@ textarea.input { min-height: 90px; resize: vertical; }
 .fx-line-item-actions { display: flex; align-items: center; gap: 4px; }
 .input.fx-input-error { border-color: #c0392b; }
 .fx-error-text { display: block; font-size: 12px; margin-top: 5px; color: #c0392b; }
+
+/* — signature: the spec-tag callout — a leader line + one line of monospace
+   pinned to a real feature, the way a checker marks up a print. The one
+   place besides CTAs where the red accent is spent. — */
+.fx-callout {
+  position: absolute; z-index: 2; font-family: var(--font-mono); font-size: 12px; line-height: 1.4;
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent); backdrop-filter: blur(2px);
+  border: 1px solid var(--color-accent); padding: 7px 10px 7px 16px; white-space: nowrap; color: var(--color-text);
+}
+.fx-callout::before {
+  content: ""; position: absolute; left: 7px; top: 50%; transform: translateY(-50%);
+  width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;
+}
+.fx-leader { position: absolute; z-index: 1; background: var(--color-accent); }
+
+/* — spec-tag chip — the same device as a standalone stat, for capability
+   numbers and quick facts. Numbers speak in mono; the marker dot ties it
+   back to the callout above. — */
+.fx-spectag {
+  display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--color-divider);
+  padding: 9px 13px; font-family: var(--font-mono); font-size: 12.5px; background: var(--color-surface);
+}
+.fx-spectag::before { content: ""; width: 6px; height: 6px; background: var(--color-accent); flex: none; }
+.fx-spectag .fx-spectag-cap {
+  color: color-mix(in srgb, var(--color-text) 62%, transparent); text-transform: uppercase;
+  letter-spacing: .06em; font-size: 10.5px; margin-right: 2px;
+}
+
 

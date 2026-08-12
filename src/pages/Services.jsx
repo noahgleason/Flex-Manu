@@ -47,10 +47,10 @@ export default function Services() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "clamp(20px,2.5vw,32px)", marginTop: "clamp(32px,4vw,48px)" }}>
           {SERVICES.map(({ title, body, featured }) => (
-            <div key={title} className="blueprint" style={{ padding: 24, ...(featured ? { borderColor: "var(--color-accent-700)" } : {}) }}>
+            <div key={title} className="blueprint" style={{ padding: 24, ...(featured ? { borderColor: "var(--color-oxide-300)" } : {}) }}>
               <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
               {featured && (
-                <span style={{ display: "inline-block", fontFamily: "var(--font-heading)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--color-accent-700)", border: "1px solid var(--color-accent-700)", padding: "3px 8px", marginBottom: 12 }}>
+                <span style={{ display: "inline-block", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--color-oxide-300)", border: "1px solid var(--color-oxide-300)", padding: "3px 8px", marginBottom: 12 }}>
                   Differentiator
                 </span>
               )}

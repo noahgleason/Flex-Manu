@@ -36,7 +36,7 @@ export default function Home() {
           <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "12px 36px", marginTop: 44, paddingTop: 26, borderTop: "1px solid var(--color-divider)", fontFamily: "var(--font-heading)", fontSize: 15, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 72%,transparent)" }}>
-          <span>Family-owned</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Est. 1960</span><span style={{ color: "var(--color-accent-2)" }}>&bull;</span><span>Metro Detroit</span><span style={{ color: "var(--color-accent)" }}>&bull;</span><span>Veteran-Owned</span><span style={{ color: "var(--color-accent-2)" }}>&bull;</span><span>U.S.-Based</span>
+          <span>Family-owned</span><span style={{ color: "var(--color-oxide-300)" }}>&bull;</span><span>Est. 1960</span><span style={{ color: "var(--color-accent-2)" }}>&bull;</span><span>Metro Detroit</span><span style={{ color: "var(--color-oxide-300)" }}>&bull;</span><span>Veteran-Owned</span><span style={{ color: "var(--color-accent-2)" }}>&bull;</span><span>U.S.-Based</span>
         </div>
       </section>
 
@@ -86,6 +86,10 @@ export default function Home() {
             <source srcSet="/assets/photos/custom-flanged-cylinder-part.webp" type="image/webp" />
             <img src="/assets/photos/custom-flanged-cylinder-part.jpg" alt="Large custom flanged cylinder part, machined and staged on the shop floor" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
           </picture>
+          <div className="fx-callout" style={{ left: "44%", top: "14%" }}>FLANGE &mdash; MACHINED TO PRINT</div>
+          <div className="fx-leader" style={{ left: "38%", top: "20%", width: 1, height: 64 }}></div>
+          <div className="fx-callout" style={{ left: "8%", top: "62%" }}>BORE &mdash; TURNED ID</div>
+          <div className="fx-leader" style={{ left: "22%", top: "52%", width: 1, height: 60 }}></div>
         </figure>
         <div>
           <span className="fx-kick">By the numbers</span>
@@ -98,8 +102,8 @@ export default function Home() {
               { value: "Any", label: "Quantity, one-off to run" },
             ].map(({ value, label }) => (
               <div key={label} style={{ background: "var(--color-bg)", padding: 20 }}>
-                <div style={{ fontFamily: "var(--font-heading)", fontSize: 40, lineHeight: 1 }}>{value}</div>
-                <div style={{ fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 65%,transparent)", marginTop: 6 }}>{label}</div>
+                <div style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 34, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>{value}</div>
+                <div style={{ fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: "color-mix(in srgb,var(--color-text) 65%,transparent)", marginTop: 8 }}>{label}</div>
               </div>
             ))}
           </div>
