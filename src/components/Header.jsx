@@ -8,7 +8,17 @@ const NAV_LINKS = [
   { to: "/about", label: "About" },
 ];
 
-const SCROLL_COMPACT_THRESHOLD = 24;
+// Two thresholds (not one) so the compact toggle has hysteresis: once
+// compact, scrollY has to drop well below the point that triggered it
+// before it un-compacts. A single shared threshold caused a feedback
+// loop on some desktops — shrinking the header shifts page content up
+// ~16px, browsers' scroll-anchoring nudges scrollY to compensate, and
+// that nudge alone was enough to cross back over the one threshold,
+// flip the class again, and repeat, which read as a visible jitter.
+// The 24px gap between these two values is comfortably bigger than
+// that 16px shift, so a single anchoring correction can't re-trigger it.
+const SCROLL_COMPACT_ON = 32;
+const SCROLL_COMPACT_OFF = 8;
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -20,7 +30,8 @@ export default function Header() {
   useEffect(() => {
     let ticking = false;
     function update() {
-      setScrolled(window.scrollY > SCROLL_COMPACT_THRESHOLD);
+      const y = window.scrollY;
+      setScrolled((prev) => (prev ? y > SCROLL_COMPACT_OFF : y > SCROLL_COMPACT_ON));
       ticking = false;
     }
     function onScroll() {

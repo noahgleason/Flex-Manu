@@ -8,6 +8,11 @@ header.wrap {
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--color-divider);
   transition: box-shadow .2s ease;
+  /* Its own height changes (is-scrolled below) shift page content and can
+     trigger the browser's scroll-anchoring correction, which nudges
+     scrollY and re-triggers the toggle. Opt this element out so its
+     resizes never feed back into scroll position. */
+  overflow-anchor: none;
 }
 /* Compact state, toggled by Header.jsx's rAF-throttled scroll listener
    (same throttle idiom as ScrollVeil.jsx) once past a small threshold —
@@ -59,20 +64,20 @@ header.wrap.is-scrolled .fx-nav { padding-top: 12px; padding-bottom: 12px; }
 .fx-specrow dd { margin:0; font-family: var(--font-mono); font-size:14.5px; line-height:1.6; color: var(--color-text); }
 .fx-imgph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; background: var(--color-surface); font-family:var(--font-heading); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color: color-mix(in srgb, var(--color-text) 55%, transparent); }
 
+/* No overflow-x/scroll-snap here on purpose: this used to be a native
+   scroll container, but browsers commonly redirect vertical wheel/trackpad
+   input into horizontal scroll on an element like that, which made the
+   carousel appear to hijack page scroll (or "zoom") whenever the cursor
+   landed on it. The viewport just clips; position is driven entirely by
+   JS transform via the prev/next/dot controls, so there's no scrollable
+   surface for the wheel, touch-drag, or pinch-zoom to grab. */
+.fx-carousel-viewport { overflow: hidden; margin: 0 -1px; }
 .fx-carousel-track {
-  position: relative; display: flex; gap: clamp(16px,2.5vw,28px); overflow-x: auto;
-  scroll-snap-type: x mandatory; scroll-padding-left: 0;
-  padding-bottom: 4px; margin: 0 -1px; scrollbar-width: none;
-  /* Without this, touch browsers treat the track as a candidate for the
-     gesture on touchstart and hold it until the finger lifts, stalling
-     page scroll anywhere over the carousel. pan-y hands vertical panning
-     straight to the page and leaves only horizontal drags to the track. */
-  touch-action: pan-y;
+  position: relative; display: flex; gap: clamp(16px,2.5vw,28px);
+  padding-bottom: 4px; will-change: transform;
 }
-.fx-carousel-track::-webkit-scrollbar { display: none; }
 .fx-carousel-slide {
-  flex: 0 0 clamp(240px,32vw,380px); aspect-ratio: 4/3;
-  scroll-snap-align: start; margin: 0;
+  flex: 0 0 clamp(240px,32vw,380px); aspect-ratio: 4/3; margin: 0;
 }
 .fx-carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
 .fx-carousel-controls { display: flex; align-items: center; gap: 18px; margin-top: 20px; }
@@ -88,7 +93,6 @@ header.wrap.is-scrolled .fx-nav { padding-top: 12px; padding-bottom: 12px; }
 }
 .fx-carousel-dot:hover::before { background: color-mix(in srgb, var(--color-accent-2) 60%, var(--color-divider)); }
 .fx-carousel-dot.is-active::before { background: var(--color-accent-2); transform: scale(1.25); }
-@media (prefers-reduced-motion: reduce) { .fx-carousel-track { scroll-behavior: auto; } }
 @media (max-width: 620px){
   .fx-specrow { grid-template-columns: 1fr; gap:6px; }
   .fx-nav-toggle { display:inline-flex; }

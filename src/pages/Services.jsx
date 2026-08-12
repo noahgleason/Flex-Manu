@@ -61,12 +61,12 @@ export default function Services() {
                   border: `1px solid ${featured ? "var(--color-oxide-label)" : "var(--color-divider)"}`,
                 }}
               >
+                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 20, textTransform: "uppercase", margin: "0 0 10px" }}>{title}</h2>
                 {featured && (
                   <span style={{ display: "inline-block", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--color-oxide-label)", border: "1px solid var(--color-oxide-label)", padding: "3px 8px", marginBottom: 12 }}>
                     Differentiator
                   </span>
                 )}
-                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 20, textTransform: "uppercase", margin: "0 0 10px" }}>{title}</h2>
                 <p style={{ fontSize: 14.5, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 80%,transparent)" }}>{body}</p>
               </Reveal>
             ))}

@@ -1,102 +1,112 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, useLayoutEffect } from "react";
 
 const EASE_OUT_CUBIC = (t) => 1 - Math.pow(1 - t, 3);
 const SCROLL_DURATION_MS = 350;
 
 export default function PhotoCarousel({ photos }) {
+  const viewportRef = useRef(null);
   const trackRef = useRef(null);
   const slidesRef = useRef([]);
-  const targetRef = useRef(0);
+  const positionRef = useRef(0);
   const animRef = useRef(null);
   const [active, setActive] = useState(0);
+  // With several slides visible per view, the track's scroll position is
+  // clamped so it never overshoots past the last slide's right edge —
+  // which means the last few indices all clamp to that same position.
+  // Without accounting for that, dots/next-clicks near the end stop
+  // moving the carousel several steps before reaching the last dot, so
+  // the carousel visually "finishes" before the controls do. maxIndex is
+  // the first index that hits the clamp — the true last reachable stop —
+  // and navigation is capped there instead of at photos.length - 1.
+  const [maxIndex, setMaxIndex] = useState(Math.max(0, (photos?.length || 1) - 1));
 
-  // Animates scrollLeft ourselves (rAF + easing) instead of relying on the
-  // browser's native `scrollTo({behavior:"smooth"})`. Retriggering a native
-  // smooth scroll before the previous one settles is a known source of
-  // flakiness across browsers — sometimes silently dropping the scroll
-  // entirely — which is exactly what rapid clicking on the prev/next
-  // buttons does. Driving it ourselves means a new target always cleanly
-  // cancels and replaces the in-flight animation.
-  const scrollToIndex = useCallback((index) => {
+  // Animates the track's transform ourselves (rAF + easing) rather than
+  // making the track a native scroll container. A native overflow-x
+  // container is also a scroll target for the mouse wheel/trackpad, and
+  // browsers commonly redirect vertical wheel input into horizontal
+  // scroll on an element like that when the cursor happens to be over
+  // it — which is exactly what made the carousel appear to "grab" page
+  // scroll and zoom/scroll itself. Driving position with transform on a
+  // non-scrollable element removes that surface entirely: the only way
+  // to move is the prev/next/dot controls, one slide per click.
+  const moveToIndex = useCallback((index, animate = true) => {
+    const viewport = viewportRef.current;
     const track = trackRef.current;
     const slide = slidesRef.current[index];
-    if (!track || !slide) return;
-    const target = Math.min(slide.offsetLeft, track.scrollWidth - track.clientWidth);
+    if (!viewport || !track || !slide) return;
+    const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    const target = Math.min(slide.offsetLeft, maxOffset);
 
     if (animRef.current) cancelAnimationFrame(animRef.current);
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      track.scrollLeft = target;
+    if (!animate || reduceMotion) {
+      positionRef.current = target;
+      track.style.transform = `translateX(${-target}px)`;
       return;
     }
 
-    const start = track.scrollLeft;
+    const start = positionRef.current;
     const distance = target - start;
     const startTime = performance.now();
     const step = (now) => {
       const t = Math.min(1, (now - startTime) / SCROLL_DURATION_MS);
-      track.scrollLeft = start + distance * EASE_OUT_CUBIC(t);
+      const pos = start + distance * EASE_OUT_CUBIC(t);
+      positionRef.current = pos;
+      track.style.transform = `translateX(${-pos}px)`;
       animRef.current = t < 1 ? requestAnimationFrame(step) : null;
     };
     animRef.current = requestAnimationFrame(step);
   }, []);
 
   const goToIndex = (index) => {
-    targetRef.current = index;
     setActive(index);
-    scrollToIndex(index);
+    moveToIndex(index);
   };
 
-  // Reads targetRef (not the `active` state) so rapid clicks each advance
-  // from the last requested slide instead of collapsing into one step when
-  // several clicks land before a re-render commits the new `active`.
   const go = (delta) => {
-    const next = Math.max(0, Math.min(photos.length - 1, targetRef.current + delta));
-    goToIndex(next);
+    setActive((prev) => {
+      const next = Math.max(0, Math.min(maxIndex, prev + delta));
+      moveToIndex(next);
+      return next;
+    });
   };
 
-  useEffect(() => {
+  const measureMaxIndex = useCallback(() => {
+    const viewport = viewportRef.current;
     const track = trackRef.current;
-    if (!track) return;
-    // Debounced until scrolling actually settles — during our own in-flight
-    // animation this fires on every frame with a transient position;
-    // updating targetRef from those would let a rapid second click read a
-    // stale, not-yet-arrived target and undercount again.
-    let settleTimer = null;
-    const onScroll = () => {
-      if (settleTimer) clearTimeout(settleTimer);
-      settleTimer = setTimeout(() => {
-        settleTimer = null;
-        // With several slides visible per view, the browser can't scroll far
-        // enough right to bring the last (visibleCount-1) slides flush to the
-        // left edge, so their scroll targets all clamp to the same maximum
-        // scrollLeft. Detect that clamped state directly rather than via
-        // nearest-offset, which would otherwise pick an earlier slide than
-        // the one actually requested.
-        const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
-        if (atEnd) {
-          const last = slidesRef.current.length - 1;
-          targetRef.current = last;
-          setActive(last);
-          return;
-        }
-        let closest = 0;
-        let closestDist = Infinity;
-        slidesRef.current.forEach((slide, i) => {
-          const dist = Math.abs(slide.offsetLeft - track.scrollLeft);
-          if (dist < closestDist) { closestDist = dist; closest = i; }
-        });
-        targetRef.current = closest;
-        setActive(closest);
-      }, 100);
+    const slides = slidesRef.current;
+    if (!viewport || !track || slides.length === 0) return photos.length - 1;
+    const maxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    const clampedIndex = slides.findIndex((slide) => slide && slide.offsetLeft >= maxOffset);
+    return clampedIndex === -1 ? slides.length - 1 : clampedIndex;
+  }, [photos.length]);
+
+  // Measured before paint so the dot count is right from the first
+  // render rather than briefly showing (and then shrinking from)
+  // one-dot-per-photo.
+  useLayoutEffect(() => {
+    const next = measureMaxIndex();
+    setMaxIndex(next);
+    setActive((prev) => Math.min(prev, next));
+  }, [measureMaxIndex, photos]);
+
+  // Slide widths are responsive (clamp()), so a viewport resize can leave
+  // both the reachable-stop count and the current slide's pixel offset
+  // stale — recompute both and snap back into place instantly.
+  useEffect(() => {
+    const onResize = () => {
+      const next = measureMaxIndex();
+      setMaxIndex(next);
+      setActive((prev) => {
+        const clamped = Math.min(prev, next);
+        moveToIndex(clamped, false);
+        return clamped;
+      });
     };
-    track.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      track.removeEventListener("scroll", onScroll);
-      if (settleTimer) clearTimeout(settleTimer);
-    };
-  }, [photos]);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [measureMaxIndex, moveToIndex]);
 
   useEffect(() => () => {
     if (animRef.current) cancelAnimationFrame(animRef.current);
@@ -106,20 +116,22 @@ export default function PhotoCarousel({ photos }) {
 
   return (
     <div className="fx-carousel">
-      <div className="fx-carousel-track" ref={trackRef}>
-        {photos.map(({ src, alt }, i) => (
-          <figure
-            className={`blueprint ${i % 2 === 0 ? "duotone" : "duotone-2"} fx-carousel-slide`}
-            key={src}
-            ref={(el) => { slidesRef.current[i] = el; }}
-          >
-            <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-            <picture>
-              <source srcSet={src.replace(/\.jpg$/, ".webp")} type="image/webp" />
-              <img src={src} alt={alt} loading="lazy" />
-            </picture>
-          </figure>
-        ))}
+      <div className="fx-carousel-viewport" ref={viewportRef}>
+        <div className="fx-carousel-track" ref={trackRef}>
+          {photos.map(({ src, alt }, i) => (
+            <figure
+              className={`blueprint ${i % 2 === 0 ? "duotone" : "duotone-2"} fx-carousel-slide`}
+              key={src}
+              ref={(el) => { slidesRef.current[i] = el; }}
+            >
+              <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
+              <picture>
+                <source srcSet={src.replace(/\.jpg$/, ".webp")} type="image/webp" />
+                <img src={src} alt={alt} loading="lazy" />
+              </picture>
+            </figure>
+          ))}
+        </div>
       </div>
 
       {photos.length > 1 && (
@@ -135,7 +147,7 @@ export default function PhotoCarousel({ photos }) {
           </button>
 
           <div className="fx-carousel-dots" role="tablist" aria-label="Photo carousel navigation">
-            {photos.map((photo, i) => (
+            {photos.slice(0, maxIndex + 1).map((photo, i) => (
               <button
                 key={photo.src}
                 type="button"
@@ -152,7 +164,7 @@ export default function PhotoCarousel({ photos }) {
             type="button"
             className="btn btn-secondary btn-icon"
             onClick={() => go(1)}
-            disabled={active === photos.length - 1}
+            disabled={active === maxIndex}
             aria-label="Next photo"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
