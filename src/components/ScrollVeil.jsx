@@ -18,8 +18,8 @@ function lerp(a, b, t) {
 export default function ScrollVeil() {
   useEffect(() => {
     const style = getComputedStyle(document.documentElement);
-    const from = hexToRgb(style.getPropertyValue("--color-accent-2").trim() || "#4a6e93");
-    const to = hexToRgb(style.getPropertyValue("--color-bg").trim() || "#14171b");
+    const from = hexToRgb(style.getPropertyValue("--color-accent-2").trim() || "#3f6e63");
+    const to = hexToRgb(style.getPropertyValue("--color-bg").trim() || "#17191a");
 
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;

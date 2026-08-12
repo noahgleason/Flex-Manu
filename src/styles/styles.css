@@ -3,22 +3,29 @@
    @import inside a stylesheet blocks discovery until this file itself loads, creating a serial request waterfall. */
 
 :root {
-  /* Palette grounded in the shop floor itself, not a generic "industrial"
-     template: Mill Black is cold-rolled plate under shop fluorescents,
-     Ground Steel is a freshly surface-ground shaft, Temper Blue is the
-     bluing color tool steel takes on around 570°F heat-treat, Mill Scale
-     is the iron-oxide scale on hot-rolled stock before it's machined
-     clean, and Instrument Red is the red on a dial indicator's zero mark —
-     spent as the one bold accent (CTAs, the spec-tag callout signature),
-     never as ambient/decorative color. See DESIGN.md if this needs re-tuning. */
-  --color-bg: #14171b;
-  --color-surface: #1c2129;
-  --color-text: #d3d7db;
-  --color-accent: #c6402c;
-  --color-accent-2: #4a6e93;
-  --color-oxide: #7a5138;
-  --color-oxide-300: #c79a7c;
+  /* Verdigris Copper: the patina you'd find on a gearbox housing that's
+     been in service since 1960, not an abstracted "industrial" mood.
+     Mill Black is cold-rolled plate under shop fluorescents, Ground Steel
+     is a freshly surface-ground shaft, Verdigris is the oxidized-copper
+     green on old bronze fittings, Old Bronze is the fitting metal itself
+     before it patinas, and Copper is the warm CTA color pulled off
+     freshly machined copper stock — spent as the one bold accent (CTAs,
+     the spec-tag callout signature), never as ambient/decorative color.
+     See DESIGN.md if this needs re-tuning. */
+  --color-bg: #17191a;
+  --color-surface: #1f2321;
+  --color-text: #d9d6cf;
+  --color-accent: #c76b3c;
+  --color-accent-2: #3f6e63;
+  --color-oxide: #6d5843;
+  --color-oxide-300: #b8a189;
   --color-divider: color-mix(in srgb, var(--color-text) 16%, transparent);
+  /* Decorative hairlines (--color-divider) sit around 1.5:1 on this dark
+     background — fine for rules and card borders, but WCAG 1.4.11 requires
+     3:1 for the boundary of an operable control (inputs, buttons, toggles)
+     when that boundary is the only cue to its shape. This token is tuned to
+     ~3.2:1 against both --color-bg and --color-surface for that use. */
+  --color-control-border: color-mix(in srgb, var(--color-text) 42%, transparent);
 
   /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
      same step of any role matches the others in visual value. */
@@ -32,25 +39,25 @@
   --color-neutral-800: #424244;
   --color-neutral-900: #0b0d0f;
 
-  --color-accent-100: #f8ded9;
-  --color-accent-200: #f0bdb3;
-  --color-accent-300: #e59c8b;
-  --color-accent-400: #d66f57;
-  --color-accent-500: #c6402c;
-  --color-accent-600: #a83322;
-  --color-accent-700: #de6852;
-  --color-accent-800: #7a2418;
-  --color-accent-900: #2a1210;
+  --color-accent-100: #fff6f2;
+  --color-accent-200: #fbd7c6;
+  --color-accent-300: #ecb8a0;
+  --color-accent-400: #da906d;
+  --color-accent-500: #c76b3c;
+  --color-accent-600: #ab5b32;
+  --color-accent-700: #e08c64;
+  --color-accent-800: #814527;
+  --color-accent-900: #36241c;
 
-  --color-accent-2-100: #e9f1f7;
-  --color-accent-2-200: #cfe0ec;
-  --color-accent-2-300: #a9c4da;
-  --color-accent-2-400: #7fa3c1;
-  --color-accent-2-500: #4a6e93;
-  --color-accent-2-600: #3b5a79;
-  --color-accent-2-700: #6e96ba;
-  --color-accent-2-800: #2c4560;
-  --color-accent-2-900: #16283a;
+  --color-accent-2-100: #e1e9e7;
+  --color-accent-2-200: #c9d9d4;
+  --color-accent-2-300: #a3bfb7;
+  --color-accent-2-400: #79a096;
+  --color-accent-2-500: #3f6e63;
+  --color-accent-2-600: #315950;
+  --color-accent-2-700: #669589;
+  --color-accent-2-800: #21443c;
+  --color-accent-2-900: #0e2520;
 
   --font-heading: "Big Shoulders Display", system-ui, sans-serif;
   --font-heading-weight: 700;
@@ -207,7 +214,7 @@ figcaption {
 .btn-primary { background: var(--color-accent); color: var(--color-bg); }
 .btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 85%, black); box-shadow: 0 8px 24px color-mix(in srgb, var(--color-accent) 40%, transparent); }
 .btn-primary:active { background: color-mix(in srgb, var(--color-accent) 72%, black); }
-.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary { border-color: var(--color-control-border); }
 .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 8%, transparent); border-color: var(--color-accent); }
 .btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
 .btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
@@ -225,7 +232,7 @@ figcaption {
   width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
   font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
   background: var(--color-surface);
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+  border: 1px solid var(--color-control-border); border-radius: var(--radius-md);
 }
 .input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
 .input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
@@ -236,7 +243,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 }
 .radio .dot {
   width: 16px; height: 16px; flex: none; border-radius: 50%;
-  border: 1.5px solid var(--color-divider);
+  border: 1.5px solid var(--color-control-border);
 }
 .radio:hover .dot { border-color: var(--color-accent); }
 .radio input:checked + .dot {
@@ -246,13 +253,13 @@ textarea.input { min-height: 90px; resize: vertical; }
 .radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 .seg {
   display: inline-flex; overflow: hidden;
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+  border: 1px solid var(--color-control-border); border-radius: var(--radius-md);
 }
 .seg-opt {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 7px 12px; font-size: 13px; cursor: pointer;
 }
-.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-control-border); }
 .seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
 .seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
