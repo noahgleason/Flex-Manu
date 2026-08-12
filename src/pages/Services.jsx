@@ -33,8 +33,8 @@ export default function Services() {
   return (
     <>
       <Seo
-        title="Additional Services — Gearbox Repair, Heat Treat & Cryogenics | Flex Manufacturing"
-        description="Gearbox repair, coatings, assemblies, heat treat, cryogenic treatment, and engineering services — coordinated alongside our custom gear and precision machining work. Metro Detroit."
+        title="Gearbox Repair, Heat Treat & Cryogenics | Flex Manufacturing"
+        description="Gearbox repair, coatings, assemblies, heat treat, cryogenic treatment & engineering services — alongside our custom gear and machining work. Metro Detroit."
         path="/services"
       />
 

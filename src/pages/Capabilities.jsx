@@ -54,8 +54,8 @@ export default function Capabilities() {
   return (
     <>
       <Seo
-        title="Capabilities — Large Diameter Gears, Spline Grinding, Turning & Milling | Flex Manufacturing"
-        description={'Custom gear and precision machining capabilities: gears & splines to 240" diameter, grinding & honing, turning to 156", five-axis milling. Steel, cast iron, brass, aluminum, Micarta. Metro Detroit.'}
+        title="Gear, Spline & Precision Machining Capabilities | Flex Mfg"
+        description={'Gears & splines to 240" diameter, grinding & honing, turning to 156", five-axis milling. Steel, cast iron, brass, aluminum, Micarta. Metro Detroit.'}
         path="/capabilities"
       />
 

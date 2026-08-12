@@ -20,8 +20,8 @@ export default function Quote() {
   return (
     <>
       <Seo
-        title="Request for Quote | Flex Manufacturing, Inc. — Metro Detroit Gear Manufacturer"
-        description="Request a quote for custom gears, splines, grinding, turning, or milling — single parts or a full multi-part order. Attach a print, CAD file, or photo of the part. Family-owned in metro Detroit since 1960."
+        title="Request a Quote | Flex Manufacturing — Metro Detroit"
+        description="Request a quote for custom gears, splines, grinding, turning, or milling — single parts or a full multi-part order. Attach a print. Family-owned since 1960."
         path="/quote"
       />
 

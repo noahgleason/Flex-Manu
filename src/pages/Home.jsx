@@ -17,8 +17,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Custom Gear Manufacturer | Flex Manufacturing, Inc. — Metro Detroit"
-        description={'Custom gears, splines & precision machining, 1" to 240" diameter, any quantity. Family-owned custom gear manufacturer in metro Detroit since 1960. Send your print, get a quote fast.'}
+        title="Custom Gear Manufacturer | Flex Manufacturing — Metro Detroit"
+        description={'Custom gears, splines & precision machining, 1" to 240" diameter, any quantity. Family-owned in metro Detroit since 1960 — send your print, get a quote fast.'}
         path="/"
       />
 

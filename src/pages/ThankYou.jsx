@@ -10,7 +10,12 @@ const NEXT_STEPS = [
 export default function ThankYou() {
   return (
     <>
-      <Seo title="Thank You | Flex Manufacturing, Inc." path="/thank-you" noindex />
+      <Seo
+        title="Thank You | Flex Manufacturing, Inc."
+        description="Your request has been received. Flex Manufacturing replies with a quote, usually the same or next business day."
+        path="/thank-you"
+        noindex
+      />
 
       <div className="wrap" style={{ maxWidth: 900, paddingTop: "clamp(64px,9vw,120px)", paddingBottom: "clamp(64px,9vw,120px)" }}>
         <span className="fx-kick">Request Received</span>

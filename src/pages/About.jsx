@@ -5,8 +5,8 @@ export default function About() {
   return (
     <>
       <Seo
-        title="About — Family-Owned Custom Gear Machining Since 1960 | Flex Manufacturing"
-        description="Flex Manufacturing, Inc. is a family-owned custom gear and precision machining sourcing house serving metro Detroit and beyond since 1960. Now in its second generation."
+        title="Family-Owned Custom Gear Machining Since 1960 | Flex Mfg"
+        description="Flex Manufacturing is a family-owned custom gear and precision machining sourcing house serving metro Detroit since 1960, now in its second generation."
         path="/about"
       />
 
