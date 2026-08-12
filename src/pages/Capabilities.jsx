@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
+import Reveal from "../components/Reveal.jsx";
 
 const SECTIONS = [
   {
@@ -72,38 +73,53 @@ export default function Capabilities() {
         </div>
       </div>
 
-      <div className="wrap" style={{ paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(40px,5vw,72px)" }}>
-        <span className="fx-kick">Capabilities</span>
-        <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Precision machining, sourced across metro Detroit</h1>
-        <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "60ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
-          Four disciplines, one point of contact. Send a print and we coordinate manufacturing through a deep network of shops &mdash; any quantity, one-offs to production runs.
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px,3vw,44px)", marginTop: "clamp(32px,4vw,52px)" }}>
-          {SECTIONS.map(({ title, cell, specs }) => (
-            <section key={title} className="fx-plate">
-              <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-              <header className="fx-tb">
-                <span className="fx-tb-title">{title}</span>
-                <span className="fx-tb-cell">{cell}</span>
-              </header>
-              <dl className="fx-speclist">
-                {specs.map(([dt, dd]) => (
-                  <div className="fx-specrow" key={dt}>
-                    <dt>{dt}</dt>
-                    <dd>{dd}</dd>
-                  </div>
-                ))}
-              </dl>
-            </section>
-          ))}
-        </div>
-        <div style={{ marginTop: 36, display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
-          <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
-          <a href="/assets/flex-manufacturing-capabilities-sheet.pdf" download className="btn btn-ghost" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v13m0 0-4-4m4 4 4-4M4 20h16"></path></svg>
-            Download our full capabilities sheet (PDF)
-          </a>
+      {/* Full-bleed light wrapper: data-theme + an explicit background on
+          a non-.wrap element, so the whole section paints paper edge to
+          edge — a .wrap div alone has no background of its own and would
+          only color the individual children that set one, leaving the
+          canvas around them dark. */}
+      <div data-theme="light" className="fx-gridtex" style={{ backgroundColor: "var(--color-bg)" }}>
+        <div className="wrap" style={{ paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(40px,5vw,72px)" }}>
+          <span className="fx-kick">Capabilities</span>
+          <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Precision machining, sourced across metro Detroit</h1>
+          <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "60ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
+            Four disciplines, one point of contact. Send a print and we coordinate manufacturing through a deep network of shops &mdash; any quantity, one-offs to production runs.
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px,3vw,44px)", marginTop: "clamp(32px,4vw,52px)" }}>
+            {SECTIONS.map(({ title, cell, specs }, i) => {
+              // Same title string as always ("01 — Gears & Splines · ...") —
+              // just split at render time so the index number can read as its
+              // own large editorial marker instead of one line of small text.
+              const match = title.match(/^(\d+)\s*—\s*(.+)$/);
+              const num = match ? match[1] : null;
+              const label = match ? match[2] : title;
+              return (
+                <Reveal as="section" key={title} delay={i * 80} className="fx-plate">
+                  <header className="fx-tb">
+                    {num && <span className="fx-tb-num">{num}</span>}
+                    <span className="fx-tb-title">{label}</span>
+                    <span className="fx-tb-cell">{cell}</span>
+                  </header>
+                  <dl className="fx-speclist">
+                    {specs.map(([dt, dd]) => (
+                      <div className="fx-specrow" key={dt}>
+                        <dt>{dt}</dt>
+                        <dd>{dd}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </Reveal>
+              );
+            })}
+          </div>
+          <div style={{ marginTop: 36, display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
+            <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
+            <a href="/assets/flex-manufacturing-capabilities-sheet.pdf" download className="btn btn-ghost" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v13m0 0-4-4m4 4 4-4M4 20h16"></path></svg>
+              Download our full capabilities sheet (PDF)
+            </a>
+          </div>
         </div>
       </div>
     </>

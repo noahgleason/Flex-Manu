@@ -7,6 +7,7 @@ export default function MinimalLayout() {
       <div className="wrap" style={{ paddingTop: 26, paddingBottom: 6 }}>
         <Link
           to="/"
+          className="fx-link-fade"
           style={{
             display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
             fontFamily: "var(--font-heading)", fontSize: 13, letterSpacing: ".04em", textTransform: "uppercase",

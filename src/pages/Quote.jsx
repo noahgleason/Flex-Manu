@@ -47,11 +47,11 @@ export default function Quote() {
         <div style={{ marginTop: 30, paddingTop: 24, borderTop: "1px solid var(--color-divider)", display: "flex", flexWrap: "wrap", gap: "10px 32px", fontSize: 14, color: "color-mix(in srgb,var(--color-text) 78%,transparent)" }}>
           <span>
             Prefer to call?{" "}
-            <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>Dave: (586) 791-8060</a>
+            <a href="tel:+15867918060" className="fx-link-fade" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>Dave: (586) 791-8060</a>
             {" "}&middot;{" "}
-            <a href="tel:+16166907648" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>Noah: (616) 690-7648</a>
+            <a href="tel:+16166907648" className="fx-link-fade" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>Noah: (616) 690-7648</a>
           </span>
-          <a href="mailto:flexmfg@sbcglobal.net" style={{ color: "var(--color-accent-700)", fontWeight: 500, textDecoration: "none" }}>flexmfg@sbcglobal.net</a>
+          <a href="mailto:flexmfg@sbcglobal.net" className="fx-link-fade" style={{ color: "var(--color-accent-700)", fontWeight: 500, textDecoration: "none" }}>flexmfg@sbcglobal.net</a>
         </div>
       </div>
     </>

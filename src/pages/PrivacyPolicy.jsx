@@ -1,4 +1,5 @@
 import Seo from "../components/Seo.jsx";
+import Reveal from "../components/Reveal.jsx";
 
 const SECTIONS = [
   {
@@ -32,6 +33,10 @@ export default function PrivacyPolicy() {
         path="/privacy-policy"
       />
 
+      {/* Full-bleed light wrapper — see the matching comment in
+          Capabilities.jsx for why data-theme + background live on a
+          non-.wrap element rather than on .wrap itself. */}
+      <div data-theme="light" className="fx-gridtex" style={{ backgroundColor: "var(--color-bg)" }}>
       <div className="wrap" style={{ maxWidth: 760, paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(40px,5vw,72px)" }}>
         <span className="fx-kick">Privacy Policy</span>
         <h1 className="fx-display" style={{ maxWidth: "18ch", fontSize: "clamp(32px,5vw,56px)" }}>Privacy Policy</h1>
@@ -39,7 +44,7 @@ export default function PrivacyPolicy() {
           Flex Manufacturing, Inc. (&ldquo;Flex,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) respects your privacy. This policy explains what information we collect through this website and how we use it.
         </p>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: 36 }}>
+        <Reveal style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: 36 }}>
           {SECTIONS.map(({ title, body }) => (
             <div key={title}>
               <h2 style={{ fontSize: 19, textTransform: "uppercase", margin: "0 0 8px" }}>{title}</h2>
@@ -51,16 +56,17 @@ export default function PrivacyPolicy() {
             <h2 style={{ fontSize: 19, textTransform: "uppercase", margin: "0 0 8px" }}>Contact Us</h2>
             <p style={{ fontSize: 15, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 82%,transparent)" }}>
               If you have questions about this privacy policy or how your information is handled, contact us at{" "}
-              <a href="tel:+15867918060" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>(586) 791-8060</a>,{" "}
-              <a href="mailto:flexmfg@sbcglobal.net" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>flexmfg@sbcglobal.net</a>, or through our{" "}
-              <a href="/quote" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>Request a Quote</a> page.
+              <a href="tel:+15867918060" className="fx-link-fade" style={{ color: "var(--color-kicker-accent)", fontWeight: 500 }}>(586) 791-8060</a>,{" "}
+              <a href="mailto:flexmfg@sbcglobal.net" className="fx-link-fade" style={{ color: "var(--color-kicker-accent)", fontWeight: 500 }}>flexmfg@sbcglobal.net</a>, or through our{" "}
+              <a href="/quote" className="fx-link-fade" style={{ color: "var(--color-kicker-accent)", fontWeight: 500 }}>Request a Quote</a> page.
             </p>
           </div>
-        </div>
+        </Reveal>
 
-        <p style={{ fontSize: 13, margin: "40px 0 0", paddingTop: 20, borderTop: "1px solid var(--color-divider)", color: "color-mix(in srgb,var(--color-text) 60%,transparent)" }}>
+        <p style={{ fontSize: 13, margin: "40px 0 0", paddingTop: 20, borderTop: "1px solid var(--color-divider)", color: "color-mix(in srgb,var(--color-text) 70%,transparent)" }}>
           Last updated: July 2026
         </p>
+      </div>
       </div>
     </>
   );

@@ -27,6 +27,15 @@
      ~3.2:1 against both --color-bg and --color-surface for that use. */
   --color-control-border: color-mix(in srgb, var(--color-text) 42%, transparent);
 
+  /* Semantic aliases for the handful of places that color small/technical
+     text with a raw accent ramp step rather than the base accent color —
+     kept as their own tokens (rather than inlining --color-accent-700 etc.
+     at each call site) so the light theme below can re-point them at a
+     step with enough contrast on paper, without touching component CSS. */
+  --color-label: var(--color-accent-2-700);
+  --color-kicker-accent: var(--color-accent-500);
+  --color-oxide-label: var(--color-oxide-300);
+
   /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
      same step of any role matches the others in visual value. */
   --color-neutral-100: #f5f5f8;
@@ -82,6 +91,31 @@
   --shadow-lg: 0 16px 40px color-mix(in srgb, black 65%, transparent);
 }
 
+/* Light "drafting paper" section theme — a scoped token override, not a
+   parallel stylesheet. Because component CSS routes through the semantic
+   --color-bg/--color-surface/--color-text/--color-control-border tokens
+   (rather than literal hex), wrapping any section in
+   [data-theme="light"] re-themes .card/.btn-secondary/.input/.fx-callout/
+   .hr/.table/the drafting-grid automatically, with no per-component rules.
+   Values are checked against WCAG AA at actual point of use, not assumed:
+   paper/ink text is 14.2:1; --color-control-border is re-mixed at 50%
+   (not the dark theme's 42%) to hold its ~3:1 WCAG 1.4.11 floor on the
+   lighter background; the two label aliases repoint to ramp steps that
+   clear 4.5:1 on paper (accent-2-700 and accent-500 both fall below that
+   on paper and are NOT reused as-is). Never applied to :root itself —
+   --color-bg must stay dark globally so the unstyled dashboard admin
+   pages (which share these tokens but aren't part of this redesign)
+   don't break; light sections opt in per-wrapper instead. */
+[data-theme="light"] {
+  --color-bg: #f2efe8;
+  --color-surface: #e9e4d8;
+  --color-text: #241f1a;
+  --color-control-border: color-mix(in srgb, var(--color-text) 50%, transparent);
+  --color-label: var(--color-accent-2-800);
+  --color-kicker-accent: var(--color-accent-800);
+  --color-oxide-label: var(--color-oxide);
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
@@ -124,23 +158,12 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-headi
 .blueprint > .corner.bl { bottom: -6px; left: -6px; }
 .blueprint > .corner.br { bottom: -6px; right: -6px; }
 
-/* Real shop photography, unified into the palette rather than sitting on
-   top of it: a full grayscale pass first (so none of a photo's original,
-   competing hues survive — fluorescent yellow, tarp blue, tie-down orange),
-   then a gradient re-color in the site's own tones via mix-blend-mode:color.
-   Two variants alternate across photo grids — Temper Blue and Mill Scale —
-   the same cool/warm pairing used everywhere else, never the red accent,
-   which stays reserved for CTAs and the spec-tag signature. */
-.duotone{position:relative;overflow:hidden}
-.duotone img,.duotone picture img{filter:grayscale(1) contrast(1.2) brightness(.8)}
-.duotone::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(155deg, var(--color-text) 0%, var(--color-accent-2) 50%, var(--color-bg) 100%);
-  mix-blend-mode:color;opacity:.94}
-.duotone-2{position:relative;overflow:hidden}
-.duotone-2 img,.duotone-2 picture img{filter:grayscale(1) contrast(1.2) brightness(.8)}
-.duotone-2::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(155deg, var(--color-text) 0%, var(--color-oxide) 50%, var(--color-bg) 100%);
-  mix-blend-mode:color;opacity:.9}
+/* Real shop photography, shown in its own original palette rather than
+   re-toned into the site's colors. .duotone/.duotone-2 no longer apply a
+   grayscale+tint treatment — kept as plain structural helpers (relative
+   positioning + clipping) since callouts and the hover-zoom crop still
+   depend on them; the two names just aren't literally two-tone anymore. */
+.duotone, .duotone-2 { position:relative; overflow:hidden; }
 
 /* Blueprint grid — a faint drafting-table grid, referencing the actual
    paper the "blueprint" motif is named after (not just the hairline
@@ -154,6 +177,13 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-headi
     repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-text) 8%, transparent) 0 1px, transparent 1px 20px),
     repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-text) 8%, transparent) 0 1px, transparent 1px 20px);
   background-position: -1px -1px;
+  /* Pins the grid to the viewport instead of each section's own box, so
+     it reads as one continuous sheet sitting behind the page rather than
+     a texture that scrolls past with the content. Degrades gracefully to
+     normal scrolling attachment on older iOS Safari, which never fully
+     supported fixed backgrounds — not a functional problem, just loses
+     the anchoring there. */
+  background-attachment: fixed;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -167,6 +197,11 @@ body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
+  /* Explicit, not inherited: headings otherwise pick up body's already-
+     resolved color and never re-read --color-text at their own position,
+     which breaks the moment a heading sits inside a scoped
+     [data-theme="light"] section (see that block's comment in :root). */
+  color: var(--color-text);
 }
 h1 { font-size: 42px; }
 h2 { font-size: 32px; }
@@ -269,7 +304,7 @@ textarea.input { min-height: 90px; resize: vertical; }
   display: flex; flex-direction: column; gap: var(--space-2);
   padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
 }
-.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-kicker-accent); }
 .card-title {
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   font-size: 17px; line-height: 1.2;
@@ -390,6 +425,33 @@ textarea.input { min-height: 90px; resize: vertical; }
 .fx-spectag .fx-spectag-cap {
   color: color-mix(in srgb, var(--color-text) 62%, transparent); text-transform: uppercase;
   letter-spacing: .06em; font-size: 10.5px; margin-right: 2px;
+}
+
+/* — motion utilities — paired with src/components/Reveal.jsx (scroll-into-
+   view fade-up) and applied directly for hover states. Transform/opacity
+   only, so they're compositor-driven rather than triggering layout. */
+.fx-reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fx-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.fx-hover-lift { transition: transform .25s ease, box-shadow .25s ease; }
+.fx-hover-lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.fx-media-zoom { overflow: hidden; }
+.fx-media-zoom img { transition: transform .5s ease; }
+.fx-media-zoom:hover img { transform: scale(1.05); }
+
+.fx-link-fade { transition: opacity .15s ease; }
+.fx-link-fade:hover { opacity: .72; }
+.fx-footer-link { transition: color .15s ease; }
+.fx-footer-link:hover { color: var(--color-label); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-reveal { opacity: 1; transform: none; transition: none; }
+  .fx-hover-lift:hover { transform: none; }
+  .fx-media-zoom img, .fx-media-zoom:hover img { transition: none; transform: none; }
 }
 
 

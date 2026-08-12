@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
+import Reveal from "../components/Reveal.jsx";
 
 const SERVICES = [
   {
@@ -38,32 +39,44 @@ export default function Services() {
         path="/services"
       />
 
-      <div className="wrap" style={{ paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(40px,5vw,72px)" }}>
-        <span className="fx-kick">Additional Services</span>
-        <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Beyond the machine work</h1>
-        <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "60ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
-          Alongside gears, splines, turning, grinding, and milling, we coordinate the services that get a part the rest of the way to installed and running.
-        </p>
+      {/* Full-bleed light wrapper — see the matching comment in
+          Capabilities.jsx for why data-theme + background live on a
+          non-.wrap element rather than on .wrap itself. */}
+      <div data-theme="light" className="fx-gridtex" style={{ backgroundColor: "var(--color-bg)" }}>
+        <div className="wrap" style={{ paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(40px,5vw,72px)" }}>
+          <span className="fx-kick">Additional Services</span>
+          <h1 className="fx-display" style={{ maxWidth: "18ch" }}>Beyond the machine work</h1>
+          <p style={{ fontSize: 17, lineHeight: 1.55, maxWidth: "60ch", margin: "22px 0 0", color: "color-mix(in srgb,var(--color-text) 84%,transparent)" }}>
+            Alongside gears, splines, turning, grinding, and milling, we coordinate the services that get a part the rest of the way to installed and running.
+          </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "clamp(20px,2.5vw,32px)", marginTop: "clamp(32px,4vw,48px)" }}>
-          {SERVICES.map(({ title, body, featured }) => (
-            <div key={title} className="blueprint" style={{ padding: 24, ...(featured ? { borderColor: "var(--color-oxide-300)" } : {}) }}>
-              <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
-              {featured && (
-                <span style={{ display: "inline-block", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--color-oxide-300)", border: "1px solid var(--color-oxide-300)", padding: "3px 8px", marginBottom: 12 }}>
-                  Differentiator
-                </span>
-              )}
-              <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 20, textTransform: "uppercase", margin: "0 0 10px" }}>{title}</h2>
-              <p style={{ fontSize: 14.5, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 80%,transparent)" }}>{body}</p>
-            </div>
-          ))}
-        </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "clamp(20px,2.5vw,32px)", marginTop: "clamp(32px,4vw,48px)" }}>
+            {SERVICES.map(({ title, body, featured }, i) => (
+              <Reveal
+                key={title}
+                delay={i * 70}
+                className="fx-hover-lift"
+                style={{
+                  padding: 24, background: "var(--color-surface)", borderRadius: "var(--radius-md)",
+                  border: `1px solid ${featured ? "var(--color-oxide-label)" : "var(--color-divider)"}`,
+                }}
+              >
+                {featured && (
+                  <span style={{ display: "inline-block", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--color-oxide-label)", border: "1px solid var(--color-oxide-label)", padding: "3px 8px", marginBottom: 12 }}>
+                    Differentiator
+                  </span>
+                )}
+                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 20, textTransform: "uppercase", margin: "0 0 10px" }}>{title}</h2>
+                <p style={{ fontSize: 14.5, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 80%,transparent)" }}>{body}</p>
+              </Reveal>
+            ))}
+          </div>
 
-        <div style={{ marginTop: 36, display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
-          <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
-          <Link to="/capabilities" className="btn btn-ghost" style={{ textDecoration: "none", fontSize: 15 }}>See machining capabilities &amp; specs &rarr;</Link>
+          <div style={{ marginTop: 36, display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <Link to="/quote" className="btn btn-primary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Request a Quote</Link>
+            <a href="tel:+15867918060" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Call (586) 791-8060</a>
+            <Link to="/capabilities" className="btn btn-ghost" style={{ textDecoration: "none", fontSize: 15 }}>See machining capabilities &amp; specs &rarr;</Link>
+          </div>
         </div>
       </div>
     </>

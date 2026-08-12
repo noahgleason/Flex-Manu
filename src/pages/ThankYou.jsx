@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
+import Reveal from "../components/Reveal.jsx";
 
 const NEXT_STEPS = [
   ["01", "We review your print", "A machinist looks over your drawing, photo, or sketch and matches it to the right process and shop."],
@@ -24,23 +25,22 @@ export default function ThankYou() {
           We reply with a quote &mdash; usually same or next business day. Here&rsquo;s what happens next.
         </p>
 
-        <dl className="fx-speclist" style={{ marginTop: 40, border: "1px solid var(--color-divider)" }}>
+        <Reveal as="dl" className="fx-speclist" style={{ marginTop: 40, border: "1px solid var(--color-divider)", borderRadius: "var(--radius-md)", overflow: "hidden" }}>
           {NEXT_STEPS.map(([num, title, body]) => (
             <div className="fx-specrow" key={num}>
               <dt>{num} &middot; {title}</dt>
               <dd>{body}</dd>
             </div>
           ))}
-        </dl>
+        </Reveal>
 
-        <div className="blueprint" style={{ padding: 24, marginTop: 32, maxWidth: 420 }}>
-          <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
+        <Reveal delay={100} style={{ padding: 24, marginTop: 32, maxWidth: 420, background: "var(--color-surface)", border: "1px solid var(--color-divider)", borderRadius: "var(--radius-md)" }}>
           <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 17, textTransform: "uppercase", margin: "0 0 14px" }}>Need it faster? Call us.</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <a href="tel:+15867918060" style={{ fontFamily: "var(--font-heading)", fontSize: 19, color: "var(--color-accent-700)", textDecoration: "none" }}>Dave: (586) 791-8060</a>
-            <a href="tel:+16166907648" style={{ fontFamily: "var(--font-heading)", fontSize: 19, color: "var(--color-accent-700)", textDecoration: "none" }}>Noah: (616) 690-7648</a>
+            <a href="tel:+15867918060" className="fx-link-fade" style={{ fontFamily: "var(--font-heading)", fontSize: 19, color: "var(--color-accent-700)", textDecoration: "none" }}>Dave: (586) 791-8060</a>
+            <a href="tel:+16166907648" className="fx-link-fade" style={{ fontFamily: "var(--font-heading)", fontSize: 19, color: "var(--color-accent-700)", textDecoration: "none" }}>Noah: (616) 690-7648</a>
           </div>
-        </div>
+        </Reveal>
 
         <div style={{ marginTop: 32 }}>
           <Link to="/" className="btn btn-secondary" style={{ textDecoration: "none", fontSize: 15, padding: "12px 22px" }}>Back to Home</Link>

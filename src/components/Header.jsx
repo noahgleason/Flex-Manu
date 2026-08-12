@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const NAV_LINKS = [
@@ -8,12 +8,34 @@ const NAV_LINKS = [
   { to: "/about", label: "About" },
 ];
 
+const SCROLL_COMPACT_THRESHOLD = 24;
+
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const close = () => setOpen(false);
 
+  // rAF-throttled scroll listener, same idiom as ScrollVeil.jsx — toggles
+  // a class rather than driving inline styles, so the transition lives in CSS.
+  useEffect(() => {
+    let ticking = false;
+    function update() {
+      setScrolled(window.scrollY > SCROLL_COMPACT_THRESHOLD);
+      ticking = false;
+    }
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="wrap">
+    <header className={scrolled ? "wrap is-scrolled" : "wrap"}>
       <nav className="fx-nav" aria-label="Primary">
         <Link className="fx-brand" to="/" onClick={close}>
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
