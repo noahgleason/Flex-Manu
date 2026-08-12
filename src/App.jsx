@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
+import MinimalLayout from "./components/MinimalLayout.jsx";
 import Home from "./pages/Home.jsx";
 import Capabilities from "./pages/Capabilities.jsx";
 import Services from "./pages/Services.jsx";
@@ -23,9 +24,6 @@ export default function App() {
         <Route path="capabilities" element={<Capabilities />} />
         <Route path="services" element={<Services />} />
         <Route path="about" element={<About />} />
-        <Route path="quote" element={<Quote />} />
-        <Route path="partner-rfq" element={<PartnerRFQ />} />
-        <Route path="thank-you" element={<ThankYou />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardOverview />} />
@@ -36,6 +34,11 @@ export default function App() {
           <Route path="add" element={<AddQuote />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+      </Route>
+      <Route element={<MinimalLayout />}>
+        <Route path="quote" element={<Quote />} />
+        <Route path="partner-rfq" element={<PartnerRFQ />} />
+        <Route path="thank-you" element={<ThankYou />} />
       </Route>
     </Routes>
   );

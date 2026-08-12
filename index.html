@@ -52,15 +52,23 @@
 <div id="root"></div>
 <!-- Static duplicate of the Quote form so Netlify's build-time crawler can
      register it — the real form is rendered client-side by React, which
-     Netlify's HTML parser never sees. Field names must match src/pages/Quote.jsx. -->
+     Netlify's HTML parser never sees. Field names must match
+     src/components/RFQForm.jsx (shared by Quote.jsx and PartnerRFQ.jsx). The
+     multi-part UI folds every line item into the single "description" and
+     "quantity" fields at submit time, to match the one-row-per-quote
+     Dashboard/Sheet schema (see netlify/functions/add-quote.js) without
+     needing a part_N_* field per line item. -->
 <form name="quote" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
   <input type="hidden" name="form-name" value="quote">
   <input type="hidden" name="customer_status" value="">
-  <input type="text" name="name">
   <input type="text" name="company">
+  <input type="text" name="name">
   <input type="email" name="email">
   <input type="tel" name="phone">
-  <input type="number" name="quantity">
+  <input type="text" name="lead_time">
+  <input type="text" name="po_reference">
+  <textarea name="notes"></textarea>
+  <input type="text" name="quantity">
   <textarea name="description"></textarea>
   <input type="file" name="attachment">
   <input type="text" name="bot-field">
@@ -70,11 +78,14 @@
 <form name="partner-rfq" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
   <input type="hidden" name="form-name" value="partner-rfq">
   <input type="hidden" name="customer_status" value="Returning Customer">
-  <input type="text" name="name">
   <input type="text" name="company">
+  <input type="text" name="name">
   <input type="email" name="email">
   <input type="tel" name="phone">
-  <input type="number" name="quantity">
+  <input type="text" name="lead_time">
+  <input type="text" name="po_reference">
+  <textarea name="notes"></textarea>
+  <input type="text" name="quantity">
   <textarea name="description"></textarea>
   <input type="file" name="attachment">
   <input type="text" name="bot-field">
