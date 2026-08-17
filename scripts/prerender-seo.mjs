@@ -38,6 +38,26 @@ const ROUTES = [
     description: "Flex Manufacturing is a family-owned custom gear and precision machining sourcing house serving metro Detroit since 1960, now in its second generation.",
   },
   {
+    slug: "gearbox-repair-michigan",
+    title: "Gearbox Repair & Rebuilding in Michigan | Flex Mfg",
+    description: "Industrial gearbox repair and rebuilding for Michigan manufacturers — gears, shafts & bearings matched to precision specs. Metro Detroit, since 1960.",
+  },
+  {
+    slug: "large-diameter-gear-manufacturing-michigan",
+    title: "Large Diameter Gear Manufacturing in Michigan | Flex Mfg",
+    description: 'Custom gears from 1" to 240" diameter — spur, helical, bevel, worm, rack, herringbone — sourced and machined for Michigan heavy industry.',
+  },
+  {
+    slug: "custom-spline-manufacturing-michigan",
+    title: "Custom Spline Manufacturing in Michigan | Flex Mfg",
+    description: 'Custom involute and straight-sided splines, 1" to 240" diameter, matched to print or sample. Serving Michigan aerospace & heavy industry since 1960.',
+  },
+  {
+    slug: "cryogenic-treatment-michigan",
+    title: "Cryogenic Treatment Services in Michigan | Flex Mfg",
+    description: "Deep cryogenic treatment for gears, tooling & precision components — improved wear resistance and dimensional stability. Metro Detroit, Michigan.",
+  },
+  {
     slug: "quote",
     title: "Request a Quote | Flex Manufacturing — Metro Detroit",
     description: "Request a quote for custom gears, splines, grinding, turning, or milling. Attach a print, CAD file, or photo of the part. Family-owned since 1960.",

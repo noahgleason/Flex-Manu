@@ -14,6 +14,10 @@ const SECTIONS = [
       ["Splines", "Involute and straight-sided."],
       ["Operations", "Hobbing, shaping, slotting, broaching, shaving, tooth rounding, tooth grinding, gear grinding, gear racks, ID–OD spline grinding, EDM."],
     ],
+    links: [
+      { to: "/large-diameter-gear-manufacturing-michigan", label: "Large-diameter gear manufacturing" },
+      { to: "/custom-spline-manufacturing-michigan", label: "Custom spline manufacturing" },
+    ],
   },
   {
     title: "02 — Grinding, Polishing & Honing · All Surfaces",
@@ -86,7 +90,7 @@ export default function Capabilities() {
             Four disciplines, one point of contact. Send a print and we coordinate manufacturing through a deep network of shops &mdash; any quantity, one-offs to production runs.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "clamp(28px,3vw,44px)", marginTop: "clamp(32px,4vw,52px)" }}>
-            {SECTIONS.map(({ title, cell, specs }, i) => {
+            {SECTIONS.map(({ title, cell, specs, links }, i) => {
               // Same title string as always ("01 — Gears & Splines · ...") —
               // just split at render time so the index number can read as its
               // own large editorial marker instead of one line of small text.
@@ -108,6 +112,15 @@ export default function Capabilities() {
                       </div>
                     ))}
                   </dl>
+                  {links && (
+                    <div style={{ display: "flex", gap: 18, flexWrap: "wrap", padding: "14px 18px", borderTop: "1px solid var(--color-divider)" }}>
+                      {links.map((l) => (
+                        <Link key={l.to} to={l.to} className="fx-link-fade" style={{ fontSize: 13.5, fontWeight: 500, color: "var(--color-accent-700)", textDecoration: "none" }}>
+                          {l.label} &rarr;
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </Reveal>
               );
             })}

@@ -37,7 +37,7 @@ export default function PartnerRFQ() {
             {" "}&middot;{" "}
             <a href="tel:+16166907648" className="fx-link-fade" style={{ color: "var(--color-accent-700)", fontWeight: 500 }}>Noah: (616) 690-7648</a>
           </span>
-          <a href="mailto:flexmfg@sbcglobal.net" className="fx-link-fade" style={{ color: "var(--color-accent-700)", fontWeight: 500, textDecoration: "none" }}>flexmfg@sbcglobal.net</a>
+          <a href="mailto:info@flexmanufacturing.net" className="fx-link-fade" style={{ color: "var(--color-accent-700)", fontWeight: 500, textDecoration: "none" }}>info@flexmanufacturing.net</a>
         </div>
       </div>
     </>

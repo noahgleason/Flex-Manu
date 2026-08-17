@@ -32,7 +32,7 @@ export default function Footer() {
             44805 Trinity Dr<br />Clinton Township, MI 48038<br />
             <a href="tel:+15867918060" className="fx-link-fade" style={{ color: "var(--color-text)", fontWeight: 500 }}>Dave Gleason: (586) 791-8060</a><br />
             <a href="tel:+16166907648" className="fx-link-fade" style={{ color: "var(--color-text)", fontWeight: 500 }}>Noah Gleason: (616) 690-7648</a><br />
-            <a href="mailto:flexmfg@sbcglobal.net" className="fx-link-fade" style={{ color: "var(--color-text)", fontWeight: 500 }}>flexmfg@sbcglobal.net</a>
+            <a href="mailto:info@flexmanufacturing.net" className="fx-link-fade" style={{ color: "var(--color-text)", fontWeight: 500 }}>info@flexmanufacturing.net</a>
           </p>
         </div>
         <div>

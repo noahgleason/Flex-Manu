@@ -6,6 +6,7 @@ const SERVICES = [
   {
     title: "Gearbox Repair",
     body: "Teardown, inspection, and rebuild of industrial gearboxes — worn gears, shafts, and bearings repaired or replaced to get equipment back in service.",
+    link: { to: "/gearbox-repair-michigan", label: "Gearbox repair in Michigan" },
   },
   {
     title: "Coatings",
@@ -23,6 +24,7 @@ const SERVICES = [
     title: "Cryogenics",
     body: "Cryogenically heat-treated gears for improved wear resistance and dimensional stability — a capability few shops offer.",
     featured: true,
+    link: { to: "/cryogenic-treatment-michigan", label: "Cryogenic treatment in Michigan" },
   },
   {
     title: "Engineering Services",
@@ -51,7 +53,7 @@ export default function Services() {
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "clamp(20px,2.5vw,32px)", marginTop: "clamp(32px,4vw,48px)" }}>
-            {SERVICES.map(({ title, body, featured }, i) => (
+            {SERVICES.map(({ title, body, featured, link }, i) => (
               <Reveal
                 key={title}
                 delay={i * 70}
@@ -68,6 +70,11 @@ export default function Services() {
                   </span>
                 )}
                 <p style={{ fontSize: 14.5, lineHeight: 1.6, margin: 0, color: "color-mix(in srgb,var(--color-text) 80%,transparent)" }}>{body}</p>
+                {link && (
+                  <Link to={link.to} className="fx-link-fade" style={{ display: "inline-block", marginTop: 12, fontSize: 13.5, fontWeight: 500, color: "var(--color-accent-700)", textDecoration: "none" }}>
+                    {link.label} &rarr;
+                  </Link>
+                )}
               </Reveal>
             ))}
           </div>

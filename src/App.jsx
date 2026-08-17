@@ -6,6 +6,10 @@ import Home from "./pages/Home.jsx";
 import Capabilities from "./pages/Capabilities.jsx";
 import Services from "./pages/Services.jsx";
 import About from "./pages/About.jsx";
+import GearboxRepairMichigan from "./pages/GearboxRepairMichigan.jsx";
+import LargeDiameterGearsMichigan from "./pages/LargeDiameterGearsMichigan.jsx";
+import CustomSplinesMichigan from "./pages/CustomSplinesMichigan.jsx";
+import CryogenicTreatmentMichigan from "./pages/CryogenicTreatmentMichigan.jsx";
 import Quote from "./pages/Quote.jsx";
 import PartnerRFQ from "./pages/PartnerRFQ.jsx";
 import ThankYou from "./pages/ThankYou.jsx";
@@ -27,6 +31,10 @@ export default function App() {
           <Route path="capabilities" element={<Capabilities />} />
           <Route path="services" element={<Services />} />
           <Route path="about" element={<About />} />
+          <Route path="gearbox-repair-michigan" element={<GearboxRepairMichigan />} />
+          <Route path="large-diameter-gear-manufacturing-michigan" element={<LargeDiameterGearsMichigan />} />
+          <Route path="custom-spline-manufacturing-michigan" element={<CustomSplinesMichigan />} />
+          <Route path="cryogenic-treatment-michigan" element={<CryogenicTreatmentMichigan />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="dashboard" element={<DashboardLayout />}>
             <Route index element={<DashboardOverview />} />
