@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import MinimalLayout from "./components/MinimalLayout.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import useAnalytics from "./hooks/useAnalytics.js";
 import Home from "./pages/Home.jsx";
 import Capabilities from "./pages/Capabilities.jsx";
 import Services from "./pages/Services.jsx";
@@ -22,6 +23,8 @@ import { STATUS_LEVELS } from "./pages/dashboard/constants.js";
 import NotFound from "./pages/NotFound.jsx";
 
 export default function App() {
+  useAnalytics();
+
   return (
     <>
       <ScrollToTop />
