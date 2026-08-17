@@ -377,7 +377,7 @@ export default function RFQForm({ formName, customerStatus }) {
           </button>
           {lineItems.length >= RFQ_MAX_LINE_ITEMS && (
             <span style={{ fontSize: 13, color: "color-mix(in srgb,var(--color-text) 62%,transparent)" }}>
-              Max {RFQ_MAX_LINE_ITEMS} parts per request — call us for larger orders.
+              Max {RFQ_MAX_LINE_ITEMS} parts per request — call or email us for larger orders.
             </span>
           )}
         </div>
