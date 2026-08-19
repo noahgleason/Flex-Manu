@@ -5,15 +5,21 @@
 // older/lighter search bots — only ever see dist/index.html's static head,
 // meaning every route would report the homepage's title/description/OG image.
 //
-// Fix: stamp a physical dist/<route>/index.html per route with that route's
-// real meta baked in. Netlify (like other static hosts) resolves clean URLs
+// Fix: stamp a physical dist/<route>.html per route with that route's real
+// meta baked in. Netlify (like other static hosts) resolves clean URLs
 // against on-disk files before falling through to the SPA catch-all rewrite
-// in netlify.toml, so /capabilities is served from dist/capabilities/index.html
-// directly. React then hydrates over it as normal and Seo.jsx's effect
-// re-applies the same values (a no-op) as the route re-renders client-side.
+// in netlify.toml, so /capabilities is served from dist/capabilities.html
+// directly. Deliberately a flat <route>.html rather than <route>/index.html —
+// a physical directory makes Netlify 301-redirect the extension-less URL to
+// its trailing-slash form (e.g. /capabilities -> /capabilities/), which then
+// still declares the no-slash URL as canonical, a self-contradicting loop
+// that Search Console flags as "Page with redirect" and won't index. A flat
+// file has no such directory to redirect toward. React then hydrates over it
+// as normal and Seo.jsx's effect re-applies the same values (a no-op) as the
+// route re-renders client-side.
 //
 // Keep this list's title/description in sync with each page's <Seo .../> call.
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -114,10 +120,8 @@ async function main() {
       html = replaceTag(html, /<meta name="description" content="[^"]*">/s, (m) => `${m}\n<meta name="robots" content="noindex">`);
     }
 
-    const outDir = join(distDir, route.slug);
-    await mkdir(outDir, { recursive: true });
-    await writeFile(join(outDir, "index.html"), html, "utf8");
-    console.log(`prerender-seo: wrote dist/${route.slug}/index.html`);
+    await writeFile(join(distDir, `${route.slug}.html`), html, "utf8");
+    console.log(`prerender-seo: wrote dist/${route.slug}.html`);
   }
 }
 
