@@ -1,28 +1,28 @@
-const { APPS_SCRIPT_URL } = require("./lib/apps-script");
+"use strict";
 
-// Netlify's outgoing webhook expects a fast response and retries on
-// timeout/non-2xx, which duplicates rows since Apps Script Web Apps are slow
-// and inconsistent to acknowledge even after they've already run. Background
-// functions get an immediate 202 from Netlify's own infra (no retry possible)
-// and the forward to Apps Script happens after that, so a slow/odd response
-// from Apps Script can no longer trigger a duplicate delivery.
+const { createQuote } = require("./lib/google-sheets");
+
+// Netlify Forms' outgoing webhook posts submissions here. This is a
+// background function: Netlify's infra returns an immediate 202 with no
+// retry, so a slow/odd response from us can't trigger a duplicate delivery.
 exports.handler = async (event) => {
-  const body = event.isBase64Encoded
-    ? Buffer.from(event.body || "", "base64")
-    : event.body;
+  const raw = event.isBase64Encoded
+    ? Buffer.from(event.body || "", "base64").toString("utf8")
+    : event.body || "";
+
+  let data;
+  try {
+    const payload = JSON.parse(raw);
+    data = payload.data || payload;
+  } catch (err) {
+    console.error("forward-submission-background: failed to parse submission body", err);
+    return;
+  }
 
   try {
-    const res = await fetch(APPS_SCRIPT_URL, {
-      method: "POST",
-      headers: { "Content-Type": event.headers?.["content-type"] || "application/json" },
-      body,
-    });
-    const text = await res.text();
-    console.log(
-      `forward-submission-background: Apps Script responded ${res.status}`,
-      text.slice(0, 500)
-    );
+    const { rfq, customerStatus } = await createQuote(data);
+    console.log(`forward-submission-background: created ${rfq} (${customerStatus})`);
   } catch (err) {
-    console.error("forward-submission-background: failed to reach Apps Script", err);
+    console.error("forward-submission-background: failed to create quote", err);
   }
 };

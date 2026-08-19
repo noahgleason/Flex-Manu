@@ -166,6 +166,89 @@ async function updateRowById(id, fields) {
   return true;
 }
 
+function nextRfqNumber(headers, dataRows) {
+  const idIndex = headers.indexOf(ID_COLUMN);
+  if (idIndex === -1) {
+    throw new Error(`Column "${ID_COLUMN}" not found in row ${HEADER_ROW} (the header row)`);
+  }
+
+  let max = 0;
+  for (const row of dataRows) {
+    const match = /RFQ-(\d+)/i.exec(String(row[idIndex] ?? ""));
+    if (match) {
+      const n = parseInt(match[1], 10);
+      if (n > max) max = n;
+    }
+  }
+
+  return `RFQ-${String(max + 1).padStart(4, "0")}`;
+}
+
+function resolveCustomerStatus(headers, dataRows, data) {
+  if (data.customer_status === "Returning Customer") return "Returning Customer";
+
+  const emailIndex = headers.indexOf("Email");
+  const companyIndex = headers.indexOf("Company");
+  const email = String(data.email || "").trim().toLowerCase();
+  const company = String(data.company || "").trim().toLowerCase();
+
+  const matches = dataRows.some((row) => {
+    const rowEmail = emailIndex === -1 ? "" : String(row[emailIndex] ?? "").trim().toLowerCase();
+    const rowCompany = companyIndex === -1 ? "" : String(row[companyIndex] ?? "").trim().toLowerCase();
+    return (email && rowEmail === email) || (company && rowCompany === company);
+  });
+
+  return matches ? "Returning Customer" : "New Customer";
+}
+
+function extractFileLink(data) {
+  if (data.attachment && typeof data.attachment === "object" && data.attachment.url) {
+    return data.attachment.url;
+  }
+  if (typeof data.attachment === "string" && data.attachment.trim()) {
+    return data.attachment;
+  }
+  return data.file_link || data.file || "";
+}
+
+async function createQuote(data) {
+  const { title, headers, dataRows } = await loadSheet();
+
+  const rfq = nextRfqNumber(headers, dataRows);
+  const customerStatus = resolveCustomerStatus(headers, dataRows, data);
+
+  const values = {
+    "RFQ #": rfq,
+    "Date Submitted": new Date().toISOString().slice(0, 10),
+    "Customer Name": data.name,
+    "Company": data.company,
+    "Email": data.email,
+    "Phone": data.phone,
+    "Part #/Description": data.description || data.message,
+    "Quantity": data.quantity,
+    "File Link": extractFileLink(data),
+    "Status": "New",
+    "Quoted Price": "",
+    "Quote Sent Date": "",
+    "PO Received Date": "",
+    "Completion Date": "",
+    "Notes": "",
+    "Customer Status": customerStatus,
+  };
+
+  const row = headers.map((header) => values[header] ?? "");
+
+  await sheetsRequest(
+    `/values/${encodeURIComponent(title)}!A${HEADER_ROW + 1}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+    {
+      method: "POST",
+      body: JSON.stringify({ values: [row] }),
+    }
+  );
+
+  return { rfq, customerStatus };
+}
+
 async function deleteRowById(id) {
   const found = await findRow(id);
   if (!found) return false;
@@ -190,4 +273,4 @@ async function deleteRowById(id) {
   return true;
 }
 
-module.exports = { ID_COLUMN, fetchAllRows, updateRowById, deleteRowById };
+module.exports = { ID_COLUMN, fetchAllRows, createQuote, updateRowById, deleteRowById };

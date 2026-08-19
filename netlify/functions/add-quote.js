@@ -1,6 +1,6 @@
 "use strict";
 
-const { APPS_SCRIPT_URL } = require("./lib/apps-script");
+const { createQuote } = require("./lib/google-sheets");
 
 const REQUIRED_FIELDS = ["name", "email", "description"];
 
@@ -38,31 +38,15 @@ exports.handler = async (event, context) => {
   };
 
   try {
-    const res = await fetch(APPS_SCRIPT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data }),
-    });
-    const text = await res.text();
-    let result = null;
-    try {
-      result = JSON.parse(text);
-    } catch {
-      // Apps Script returned something unexpected — handled by the ok check below.
-    }
-
-    if (!res.ok || !result || result.status !== "success") {
-      console.error("add-quote: Apps Script did not confirm success", res.status, text.slice(0, 500));
-      return { statusCode: 502, body: JSON.stringify({ error: "Failed to add quote" }) };
-    }
+    const { rfq, customerStatus } = await createQuote(data);
 
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ok: true, rfq: result.rfq, customerStatus: result.customerStatus }),
+      body: JSON.stringify({ ok: true, rfq, customerStatus }),
     };
   } catch (err) {
-    console.error("add-quote: failed to reach Apps Script", err);
+    console.error("add-quote: failed to create quote", err);
     return { statusCode: 502, body: JSON.stringify({ error: "Failed to add quote" }) };
   }
 };
